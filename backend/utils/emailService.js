@@ -13,10 +13,19 @@ const transporter = nodemailer.createTransport({
             rejectUnauthorized: false
         },});
 
-exports.sendActivationEmail = async (email, activationToken, contactName) => {
+exports.sendActivationEmail = async (email, activationToken, contactName,personalMessage = "") => {
   //const activationUrl = `${process.env.CLIENT_URL}/client/updatepassword/${activationToken}`;
   const activationUrl = `https://snptaxes.com/client/client/updatepassword/${activationToken}`;
 
+ // Create the personal message section if provided
+  const personalMessageSection = personalMessage ? `
+    <div style="background-color: #f8f9fa; border-left: 4px solid #007bff; padding: 12px; margin: 20px 0;">
+      <p style="margin: 0; font-style: italic; color: #495057;">
+        <strong>Personal Message:</strong><br/>
+        ${personalMessage}
+      </p>
+    </div>
+  ` : '';
   const mailOptions = {
     from: process.env.SMTP_FROM,
     to: email,
@@ -25,6 +34,7 @@ exports.sendActivationEmail = async (email, activationToken, contactName) => {
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #333;">Account Activation Required</h2>
         <p>Hello ${contactName},</p>
+  ${personalMessageSection}
         <p>Your account has been created. Please click the link below to set your password and activate your account:</p>
         <p>
           <a href="${activationUrl}" 

@@ -2,8 +2,12 @@
 // routes/accountRoutes.js
 const express = require("express");
 const router = express.Router();
-
+const multer = require("multer");
 const accountController = require("../controllers/accountController");
+
+const Account = require("../models/AccountNewModel");
+
+const uploadAccountPicture = require("../middleware/uploadAccountPicture");
 
 router.post("/", accountController.createAccount);
 router.post("/sendBulkEmails", accountController.sendBulkEmails);
@@ -37,8 +41,11 @@ router.get('/:accountId/contacts', accountController.getAccountContacts);
 router.delete('/:accountId/contact/:contactId', accountController.removeContactFromAccount);
 
 router.delete('/accounts/deleteMultipleAccounts', accountController.deleteMultipleAccounts );
-
-
-
+// Upload profile picture
+router.patch(
+  "/:id/profile-picture",
+  uploadAccountPicture.single("profilePicture"),
+  accountController.uploadProfilePicture
+);
 
 module.exports = router;

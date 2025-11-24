@@ -201,12 +201,12 @@ exports.getAccountNamesByStatus = async (req, res) => {
     const { active } = req.query; // ?active=true / ?active=false
     const isActive = active === "true";
 
-    const accounts = await Account.find(
+    const accountlist= await Account.find(
       { active: isActive },
       "_id accountName"
     );
 
-    res.status(200).json({ success: true, accounts });
+    res.status(200).json({ success: true, accountlist});
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -727,4 +727,30 @@ exports.getMultipleAccountsByIds = async (req, res) => {
   }
 };
 
+exports.uploadProfilePicture = async (req, res) => {
+  try {
+    const accountId = req.params.id;
 
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    // Stored path e.g. uploads/account-profile/69198a6/1763641155123-avatar.png
+    const filePath = req.file.path.replace(/\\/g, "/");
+
+    const updated = await Account.findByIdAndUpdate(
+      accountId,
+      { profilePicture: filePath },
+      { new: true }
+    );
+
+    res.json({
+      message: "Profile picture uploaded successfully",
+      profilePicture: updated.profilePicture,
+      account: updated,
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

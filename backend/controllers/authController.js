@@ -70,8 +70,8 @@ console.log("password",password)
       id: contact._id,
       email: contact.email
     };
-    const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '1h' });
-
+   // const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '1h' });
+ const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '2h' });
     res.status(200).json({
       message: 'Login successful',
       token,  // Return JWT token here

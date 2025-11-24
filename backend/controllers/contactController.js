@@ -223,6 +223,7 @@ exports.activateAndSetPassword = async (req, res) => {
 exports.resendActivationEmail = async (req, res) => {
   try {
     const { contactId } = req.params;
+const { personalMessage } = req.body;
     
     const contact = await Contact.findById(contactId);
     
@@ -242,7 +243,8 @@ exports.resendActivationEmail = async (req, res) => {
     await sendActivationEmail(
       contact.email, 
       contact.activationToken,
-      `${contact.firstName} ${contact.lastName}`
+      `${contact.firstName} ${contact.lastName}`,
+ personalMessage
     );
     
     res.json({ success: true, message: 'Activation email sent successfully' });
@@ -270,7 +272,7 @@ exports.getContactById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const contact = await Contact.findById(id)
+    const contact = await Contact.findById(id).populate("tags", "tagName tagColour")
      
     if (!contact) {
       return res.status(404).json({ error: "Contact not found" });

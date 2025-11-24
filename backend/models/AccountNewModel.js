@@ -56,7 +56,9 @@ folderTemp: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-
+ profilePicture: {
+    type: String,  // e.g. "uploads/accounts/abc123.png"
+  },
 active: {
       type: Boolean,
       default: true,
