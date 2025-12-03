@@ -1,0 +1,2 @@
+Transaction Type,Transaction ID,Tax lot ID,Asset name,Amount,Date Acquired,Cost basis (USD),Date of Disposition,Proceeds (USD),Gains (Losses) (USD),Holding period (Days),Data source
+Sell,347f940f-2a61-536b-a596-4bbc3aaee43c,7bae0f17-4926-4478-a61b-fd62627a749a,SOL,0.965546589,03/05/2024,122.5300000000000000466947494,03/07/2024,128.22000000000000001173219,5.6899999999999999650374406,2,Coinbase

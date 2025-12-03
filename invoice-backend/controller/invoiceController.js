@@ -205,7 +205,7 @@ const getInvoicesCount = async (req, res) => {
 
 const createInvoice = async (req, res) => {
   const {
-      account, invoicedate, description, invoicetemplate, paymentMethod, teammember, emailinvoicetoclient,
+      account,invoicenumber, invoicedate, description, invoicetemplate, paymentMethod, teammember, emailinvoicetoclient,
       reminders, daysuntilnextreminder, numberOfreminder, scheduleinvoice, scheduleinvoicedate, scheduleinvoicetime,
       payInvoicewithcredits, lineItems, summary, active,paidAmount,invoiceStatus,balanceDueAmount
   } = req.body;
@@ -215,7 +215,7 @@ const createInvoice = async (req, res) => {
 
       // Create a new invoice
       const newInvoice = await Invoice.create({
-          account, invoicedate, description, invoicetemplate, paymentMethod, teammember, emailinvoicetoclient,
+          account,invoicenumber, invoicedate, description, invoicetemplate, paymentMethod, teammember, emailinvoicetoclient,
           reminders, daysuntilnextreminder, numberOfreminder, scheduleinvoice, scheduleinvoicedate, scheduleinvoicetime,
           payInvoicewithcredits, lineItems, summary, active,paidAmount,invoiceStatus,balanceDueAmount
       });
@@ -445,8 +445,30 @@ const deleteInvoice = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
+const { loadMetadata, saveMetadata } = require("../utils/fileMetadata");
+const InvoiceLock = require("../models/InvoiceLock");
 
 //update a new Invoice
+//const updateInvoice = async (req, res) => {
+  //const { id } = req.params;
+
+  //if (!mongoose.Types.ObjectId.isValid(id)) {
+  //  return res.status(404).json({ error: "Invalid Invoice ID" });
+  //}
+
+ // try {
+   // const updatedInvoice = await Invoice.findOneAndUpdate({ _id: id }, { ...req.body }, { new: true });
+
+   // if (!updatedInvoice) {
+     // return res.status(404).json({ error: "No such Invoice" });
+  //  }
+
+   // res.status(200).json({ message: "Invoice Updated successfully", updatedInvoice });
+ // } catch (error) {
+   // return res.status(500).json({ error: error.message });
+ // }
+//};
+
 const updateInvoice = async (req, res) => {
   const { id } = req.params;
 
@@ -455,14 +477,57 @@ const updateInvoice = async (req, res) => {
   }
 
   try {
-    const updatedInvoice = await Invoice.findOneAndUpdate({ _id: id }, { ...req.body }, { new: true });
+    const updatedInvoice = await Invoice.findOneAndUpdate(
+      { _id: id },
+      { ...req.body },
+      { new: true }
+    );
 
     if (!updatedInvoice) {
       return res.status(404).json({ error: "No such Invoice" });
     }
 
-    res.status(200).json({ message: "Invoice Updated successfully", updatedInvoice });
+    /** ----------------------------------------------
+     *  When invoice is PAID -> Remove invoiceLock
+     *  from DB + from metadata file
+     * ---------------------------------------------- */
+
+console.log("updatedInvoice",updatedInvoice)
+    if (updatedInvoice.invoiceStatus === "Paid") {
+      const locks = await InvoiceLock.find({ invoiceId: id });
+
+      for (const lock of locks) {
+        const result = loadMetadata(lock.documentPath);
+
+        if (result) {
+          const { meta, metaPath } = result;
+
+          // Remove the invoiceId from metadata.invoiceLock array
+          meta.invoiceLock = (meta.invoiceLock || []).filter(
+            (invId) => invId.toString() !== id.toString()
+          );
+
+          // Save updated metadata file
+          saveMetadata(metaPath, meta);
+// Log updated metadata to console
+console.log("?? Metadata updated:", {
+  documentPath: lock.documentPath,
+  metaPath,
+  updatedMeta: meta
+});
+        }
+
+        // Delete invoiceLock record from DB
+        await InvoiceLock.deleteOne({ _id: lock._id });
+      }
+    }
+
+    return res.status(200).json({
+      message: "Invoice Updated successfully",
+      updatedInvoice,
+    });
   } catch (error) {
+    console.error("Error updating invoice:", error);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -666,61 +731,58 @@ const getInvoiceforPrint = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(404).json({ error: "Invalid Invoice ID" });
+    return res.status(404).json({ error: "Invalid Invoice ID" });
   }
 
   try {
-      const invoice = await Invoice.findById(id);
-   
-      const account = await Accounts.findById(invoice.account).populate("contacts");
+    // 1. Fetch invoice and populate account directly
+    const invoice = await Invoice.findById(id).populate("account");
 
-                      // Define placeholder values
-      const placeholderValues = {
-          ACCOUNT_NAME: account?.accountName || '',
-                   CURRENT_DAY_FULL_DATE: currentDate.toLocaleDateString(),
-          CURRENT_DAY_NUMBER: currentDate.getDate(),
-          CURRENT_DAY_NAME: currentDate.toLocaleString('default', { weekday: 'long' }),
-          CURRENT_MONTH_NUMBER: currentDate.getMonth() + 1,
-          CURRENT_MONTH_NAME: currentDate.toLocaleString('default', { month: 'long' }),
-          CURRENT_YEAR: currentDate.getFullYear(),
-          LAST_DAY_FULL_DATE: lastDayFullDate,
-          LAST_DAY_NUMBER: lastDayNumber,
-          LAST_DAY_NAME: lastDayName,
-          LAST_WEEK: lastWeek,
-          LAST_MONTH_NUMBER: lastMonthNumber,
-          LAST_MONTH_NAME: lastMonthName,
-          LAST_QUARTER: lastQuarter,
-          LAST_YEAR: lastYear,
-          NEXT_DAY_FULL_DATE: nextDayFullDate,
-          NEXT_DAY_NUMBER: nextDayNumber,
-          NEXT_DAY_NAME: nextDayName,
-          NEXT_WEEK: nextWeek,
-          NEXT_MONTH_NUMBER: nextMonthNumber,
-          NEXT_MONTH_NAME: nextMonthName,
-          NEXT_QUARTER: nextQuarter,
-          NEXT_YEAR: nextYear,
-          // Add other dynamic placeholders as required
-      };
+    if (!invoice) {
+      return res.status(404).json({ error: "No such Invoice" });
+    }
 
-      // Function to replace placeholders in text
-      const replacePlaceholders = (template, data) => {
-          return template.replace(/\[([\w\s]+)\]/g, (match, placeholder) => {
-              return data[placeholder.trim()] || '';
-          });
-      };
+    // 2. Validate account
+    const account = invoice.account;
 
-      // Update each invoice's description with placeholders replaced
-      invoice.description = replacePlaceholders(invoice.description || '', placeholderValues);
+    if (!account) {
+      return res.status(404).json({ error: "No such Account linked with Invoice" });
+    }
 
-      if (!invoice) {
-          return res.status(404).json({ error: "No such Invoice" });
-      }
+    // 3. Prepare date placeholders
+    const currentDate = new Date();
 
-      res.status(200).json({ message: "Invoice retrieved successfully", invoice });
+    const placeholderValues = {
+      ACCOUNT_NAME: account.accountName || "",
+      CURRENT_DAY_FULL_DATE: currentDate.toLocaleDateString(),
+      CURRENT_DAY_NUMBER: currentDate.getDate(),
+      CURRENT_DAY_NAME: currentDate.toLocaleString("default", { weekday: "long" }),
+      CURRENT_MONTH_NUMBER: currentDate.getMonth() + 1,
+      CURRENT_MONTH_NAME: currentDate.toLocaleString("default", { month: "long" }),
+      CURRENT_YEAR: currentDate.getFullYear(),
+    };
+
+    // 4. Robust placeholder replacement
+    const replacePlaceholders = (template, data) => {
+      return template.replace(/\[([^\]]+)\]/g, (match, placeholder) => {
+        const key = placeholder.trim().replace(/\s+/g, "_").toUpperCase();
+        return data[key] || "";
+      });
+    };
+
+    // 5. Replace placeholders
+    invoice.description = replacePlaceholders(invoice.description || "", placeholderValues);
+console.log("invoice print",invoice)
+    // 6. Return response
+    res.status(200).json({
+      message: "Invoice retrieved successfully",
+      invoice,
+    });
+
   } catch (error) {
-      res.status(500).json({ error: error.message });
-      console.log(error.message)
-}
+    console.log(error.message);
+    res.status(500).json({ error: error.message });
+  }
 };
 
 const deleteInvoicesByAccountId = async (req, res) => {
@@ -793,7 +855,30 @@ const getPendingInvoicesByAccountId = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+const getNextInvoiceNumber= async (req, res) => {
 
+ try {
+    // Find the highest invoice number currently in the database
+    const lastInvoice = await Invoice.findOne().sort({ invoicenumber: -1 });
+    
+    console.log('Last invoice found:', lastInvoice ? lastInvoice.invoicenumber : 'No invoices found');
+    
+    let nextNumber = 1;
+    if (lastInvoice && lastInvoice.invoicenumber) {
+      nextNumber = lastInvoice.invoicenumber + 1;
+    }
+    
+    console.log('Next invoice number will be:', nextNumber);
+    
+    res.json({ 
+      nextInvoiceNumber: nextNumber,
+      lastInvoiceNumber: lastInvoice ? lastInvoice.invoicenumber : 0
+    });
+  } catch (error) {
+    console.error('Error fetching next invoice number:', error);
+    res.status(500).json({ message: 'Error fetching next invoice number', error: error.message });
+  }
+}
 module.exports = {
   getInvoiceCountByStatus,
   getInvoiceSummary,
@@ -808,5 +893,5 @@ module.exports = {
   getInvoiceListbyid,
   getInvoiceListbyAccountid,
   getInvoiceforPrint,
-  deleteInvoicesByAccountId,getPendingInvoicesByAccountId
+  deleteInvoicesByAccountId,getPendingInvoicesByAccountId,getNextInvoiceNumber
 };

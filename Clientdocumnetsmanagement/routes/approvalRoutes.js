@@ -4,6 +4,8 @@ const approvalController = require("../controller/approvalController");
 
 router.post("/request-approval", approvalController.requestApproval);
 router.get("/client-approvals/:email", approvalController.getClientApprovals);
+router.get("/approvals/:id", approvalController.getApprovalById);
+
 router.patch("/client-approvals/:id", approvalController.updateApprovalStatus);
 router.get("/approvalList/byaccountid/:accountId", approvalController.getClientApprovalsByAccount);
 router.get('/approvalList/:accountId/pending', approvalController.getPendingApprovalsByAccount);

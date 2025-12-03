@@ -54,6 +54,21 @@ exports.getClientApprovals = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch approvals" });
   }
 };
+// ?? Get approval by ID
+exports.getApprovalById = async (req, res) => {
+  try {
+    const approval = await Approval.findById(req.params.id);
+
+    if (!approval) {
+      return res.status(404).json({ error: "Approval not found" });
+    }
+
+    res.json({ approval });
+  } catch (err) {
+    console.error("Error fetching approval:", err);
+    res.status(500).json({ error: "Failed to fetch approval" });
+  }
+};
 
 // // ?? Get all pending approvals for a specific account
 exports.getClientApprovalsByAccount = async (req, res) => {
