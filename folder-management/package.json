@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
- "start": "nodemon index.js"
+    "start": "nodemon index.js "
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,9 @@
     "express": "^5.1.0",
     "fs-extra": "^11.3.2",
     "mongoose": "^8.19.1",
-    "multer": "^2.0.2"
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.11",
+    "stream": "^0.0.3",
+    "unzipper": "^0.12.3"
   }
 }

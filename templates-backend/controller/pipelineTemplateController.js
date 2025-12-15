@@ -116,6 +116,7 @@ const createPipeline = async (req, res) => {
       priority,
       days_on_Stage,
       assignees,
+clientFacing_status,
       name,
       startdate,
       stages,
@@ -143,6 +144,7 @@ const createPipeline = async (req, res) => {
       assignees,
       name,
       startdate,
+clientFacing_status,
       stages,
       active,
     });
@@ -202,9 +204,8 @@ const updatePipeline = async (req, res) => {
 
         if (!updatedPipeline) {
             return res.status(404).json({ error: "No such Pipeline" });
-        }
-
-        res.status(200).json({ message: "Pipeline Updated successfully", updatedPipeline });
+       }
+         res.status(200).json({ message: "Pipeline Updated successfully", updatedPipeline });
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }

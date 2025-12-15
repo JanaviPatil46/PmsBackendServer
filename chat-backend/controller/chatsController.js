@@ -679,7 +679,7 @@ const deleteMessage = async (req, res) => {
 ///for resend client task button
 const addClientTask = async (req, res) => {
   const { chatId, newTask } = req.body;
-  // console.log(chatId);
+  console.log(newTask );
 
   try {
     // Find the chat document
@@ -691,10 +691,11 @@ const addClientTask = async (req, res) => {
     }
 
     // Clear the previous client tasks
-    chat.clienttasks = []; // This removes all the previous tasks
-
+   // chat.clienttasks = []; // This removes all the previous tasks
+chat.clienttasks = newTask;
+console.log("chat.clienttasks",newTask)
     // Add the new tasks as a single sub-array in clienttasks
-    chat.clienttasks.push(newTask);
+   // chat.clienttasks.push(newTask);
 
     // Save the updated chat document
     const updatedChat = await chat.save();
@@ -750,32 +751,71 @@ const addClientTask = async (req, res) => {
      // .json({ message: "Error updating task(s)", error: error.message });
  // }
 //};
-const updateTaskCheckedStatus = async (req, res) => {
-  const { chatId, taskUpdates } = req.body;
+//const updateTaskCheckedStatus = async (req, res) => {
+ // const { chatId, taskUpdates } = req.body;
 
+ // try {
+  //  const chat = await AccountwiseChat.findById(chatId);
+  //  if (!chat) return res.status(404).json({ message: "Chat not found" });
+
+    // Loop through parent arrays and inner tasks
+  //  chat.clienttasks = chat.clienttasks.map(taskGroup =>
+   //   taskGroup.map(task => {
+   //    const update = taskUpdates.find(u => u.id === task.id);
+    //   return update ? { ...task, checked: update.checked } : task;
+   //  })
+  // );
+ // If clienttasks is a flat array
+   
+   // const updatedChat = await chat.save();
+
+  //  res.status(200).json({
+    //  message: "Task(s) updated successfully",
+   //   updatedChat,
+  //  });
+
+ // } catch (error) {
+ //   console.error("Error updating task(s):", error.message);
+ //   res.status(500).json({
+  //    message: "Error updating task(s)",
+  //    error: error.message,
+ //   });
+ // }
+//};
+const updateTaskCheckedStatus = async (req, res) => {
   try {
+    const { chatId, taskUpdates } = req.body;
+
+    if (!chatId || !taskUpdates || !Array.isArray(taskUpdates)) {
+      return res.status(400).json({ message: "Invalid request payload" });
+    }
+
+    // Find Chat
     const chat = await AccountwiseChat.findById(chatId);
     if (!chat) return res.status(404).json({ message: "Chat not found" });
 
-    // Loop through parent arrays and inner tasks
-    chat.clienttasks = chat.clienttasks.map(taskGroup =>
-      taskGroup.map(task => {
-        const update = taskUpdates.find(u => u.id === task.id);
-        return update ? { ...task, checked: update.checked } : task;
-      })
-    );
+    // Update tasks
+    chat.clienttasks = chat.clienttasks.map(task => {
+      const updatedTask = taskUpdates.find(t => t.id === task.id);
+      if (updatedTask) {
+        task.checked = updatedTask.checked !== undefined ? updatedTask.checked : task.checked;
+        task.text = updatedTask.text ?? task.text;
+      }
+      return task;
+    });
 
     const updatedChat = await chat.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Task(s) updated successfully",
+     // clienttasks: updatedChat.clienttasks,
       updatedChat,
     });
 
   } catch (error) {
-    console.error("Error updating task(s):", error.message);
-    res.status(500).json({
-      message: "Error updating task(s)",
+    console.error("Error updating task(s):", error);
+    return res.status(500).json({
+      message: "Internal Server Error while updating tasks",
       error: error.message,
     });
   }

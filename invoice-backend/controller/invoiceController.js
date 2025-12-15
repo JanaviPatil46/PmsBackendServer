@@ -506,7 +506,12 @@ console.log("updatedInvoice",updatedInvoice)
           meta.invoiceLock = (meta.invoiceLock || []).filter(
             (invId) => invId.toString() !== id.toString()
           );
-
+// Set status after update
+if (!meta.invoiceLock.length) {
+  meta.lockInvoiceStatus = "";   // No invoices left ? mark completed
+} else {
+  meta.lockInvoiceStatus = "pendingpayment";     // Still locked with other invoices
+}
           // Save updated metadata file
           saveMetadata(metaPath, meta);
 // Log updated metadata to console

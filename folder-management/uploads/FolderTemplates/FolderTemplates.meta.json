@@ -1,0 +1,1290 @@
+{
+  "name": "FolderTemplates",
+  "path": "uploads/FolderTemplates",
+  "updatedAt": "2025-11-29T11:53:22.116Z",
+  "files": [],
+  "folders": [
+    {
+      "name": "2021",
+      "path": "uploads/FolderTemplates/2021",
+      "updatedAt": "2025-11-29T11:53:22.117Z",
+      "files": [
+        {
+          "name": "2021_FBAR_FATCA_Checklist.xlsx",
+          "size": 105582,
+          "uploadedAt": "2025-11-29T11:53:22.117Z",
+          "folder": "uploads/FolderTemplates/2021",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "2021_FBAR_FATCA_Checklist.xlsx.meta.json",
+          "size": 262,
+          "uploadedAt": "2025-11-29T11:53:22.119Z",
+          "folder": "uploads/FolderTemplates/2021",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "2021_Rental-Property-Details.xlsx",
+          "size": 113493,
+          "uploadedAt": "2025-11-29T11:53:22.119Z",
+          "folder": "uploads/FolderTemplates/2021",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "2021_Rental-Property-Details.xlsx.meta.json",
+          "size": 265,
+          "uploadedAt": "2025-11-29T11:53:22.120Z",
+          "folder": "uploads/FolderTemplates/2021",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "folder.meta.json",
+          "size": 590,
+          "uploadedAt": "2025-11-29T11:53:22.120Z",
+          "folder": "uploads/FolderTemplates/2021",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        }
+      ],
+      "folders": []
+    },
+    {
+      "name": "2024",
+      "path": "uploads/FolderTemplates/2024",
+      "updatedAt": "2025-11-29T11:53:22.122Z",
+      "files": [
+        {
+          "name": "2024_FBAR_FATCA_Checklist.xlsx",
+          "size": 105582,
+          "uploadedAt": "2025-11-29T11:53:22.122Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "2024_FBAR_FATCA_Checklist.xlsx.meta.json",
+          "size": 262,
+          "uploadedAt": "2025-11-29T11:53:22.123Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "2024_Rental-Property-Details.xlsx",
+          "size": 113493,
+          "uploadedAt": "2025-11-29T11:53:22.124Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "2024_Rental-Property-Details.xlsx.meta.json",
+          "size": 265,
+          "uploadedAt": "2025-11-29T11:53:22.124Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "ARJUN_DL_BACK.jpg",
+          "size": 465510,
+          "uploadedAt": "2025-11-29T11:53:22.125Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "ARJUN_DL_BACK.jpg.meta.json",
+          "size": 249,
+          "uploadedAt": "2025-11-29T11:53:22.125Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "ARJUN_DL_FRONT.jpg",
+          "size": 406002,
+          "uploadedAt": "2025-11-29T11:53:22.126Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "ARJUN_DL_FRONT.jpg.meta.json",
+          "size": 250,
+          "uploadedAt": "2025-11-29T11:53:22.126Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "SURBHI_ID_BACK.jpg",
+          "size": 817473,
+          "uploadedAt": "2025-11-29T11:53:22.127Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "SURBHI_ID_BACK.jpg.meta.json",
+          "size": 250,
+          "uploadedAt": "2025-11-29T11:53:22.127Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "SURBHI_ID_FRONT.jpg",
+          "size": 917033,
+          "uploadedAt": "2025-11-29T11:53:22.128Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "SURBHI_ID_FRONT.jpg.meta.json",
+          "size": 251,
+          "uploadedAt": "2025-11-29T11:53:22.128Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "discover_bank_interest.pdf",
+          "size": 569497,
+          "uploadedAt": "2025-11-29T11:53:22.129Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "discover_bank_interest.pdf.meta.json",
+          "size": 258,
+          "uploadedAt": "2025-11-29T11:53:22.129Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "etrade_stocks (2).pdf",
+          "size": 350375,
+          "uploadedAt": "2025-11-29T11:53:22.129Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "etrade_stocks (2).pdf.meta.json",
+          "size": 253,
+          "uploadedAt": "2025-11-29T11:53:22.129Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "etrade_stocks.pdf",
+          "size": 350375,
+          "uploadedAt": "2025-11-29T11:53:22.130Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "etrade_stocks.pdf.meta.json",
+          "size": 249,
+          "uploadedAt": "2025-11-29T11:53:22.130Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "etrade_supplement.pdf",
+          "size": 240688,
+          "uploadedAt": "2025-11-29T11:53:22.131Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "etrade_supplement.pdf.meta.json",
+          "size": 253,
+          "uploadedAt": "2025-11-29T11:53:22.131Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "folder.meta.json",
+          "size": 4146,
+          "uploadedAt": "2025-11-29T11:53:22.131Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "kaiser_coverage (2).pdf",
+          "size": 378765,
+          "uploadedAt": "2025-11-29T11:53:22.131Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "kaiser_coverage (2).pdf.meta.json",
+          "size": 255,
+          "uploadedAt": "2025-11-29T11:53:22.132Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "kaiser_coverage.pdf",
+          "size": 378765,
+          "uploadedAt": "2025-11-29T11:53:22.132Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "kaiser_coverage.pdf.meta.json",
+          "size": 251,
+          "uploadedAt": "2025-11-29T11:53:22.132Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "marvell_w2_2024.pdf",
+          "size": 103504,
+          "uploadedAt": "2025-11-29T11:53:22.133Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        },
+        {
+          "name": "marvell_w2_2024.pdf.meta.json",
+          "size": 251,
+          "uploadedAt": "2025-11-29T11:53:22.133Z",
+          "folder": "uploads/FolderTemplates/2024",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        }
+      ],
+      "folders": []
+    },
+    {
+      "name": "6918a45feae8ef80c2fcece4",
+      "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4",
+      "updatedAt": "2025-11-29T11:53:22.134Z",
+      "files": [
+        {
+          "name": "folder.meta.json",
+          "size": 371,
+          "uploadedAt": "2025-11-29T11:53:22.162Z",
+          "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        }
+      ],
+      "folders": [
+        {
+          "name": "Client Uploaded Documents",
+          "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents",
+          "updatedAt": "2025-11-29T11:53:22.134Z",
+          "files": [
+            {
+              "name": "folder.meta.json",
+              "size": 287,
+              "uploadedAt": "2025-11-29T11:53:22.155Z",
+              "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": [
+            {
+              "name": "2021",
+              "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2021",
+              "updatedAt": "2025-11-29T11:53:22.135Z",
+              "files": [
+                {
+                  "name": "2021_FBAR_FATCA_Checklist.xlsx",
+                  "size": 105582,
+                  "uploadedAt": "2025-11-29T11:53:22.135Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2021",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2021_FBAR_FATCA_Checklist.xlsx.meta.json",
+                  "size": 313,
+                  "uploadedAt": "2025-11-29T11:53:22.135Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2021",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2021_Rental-Property-Details.xlsx",
+                  "size": 113493,
+                  "uploadedAt": "2025-11-29T11:53:22.136Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2021",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2021_Rental-Property-Details.xlsx.meta.json",
+                  "size": 316,
+                  "uploadedAt": "2025-11-29T11:53:22.136Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2021",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "folder.meta.json",
+                  "size": 692,
+                  "uploadedAt": "2025-11-29T11:53:22.137Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2021",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": []
+            },
+            {
+              "name": "2022",
+              "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2022",
+              "updatedAt": "2025-11-29T11:53:22.138Z",
+              "files": [
+                {
+                  "name": "2022_FBAR_FATCA_Checklist.xlsx",
+                  "size": 105582,
+                  "uploadedAt": "2025-11-29T11:53:22.138Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2022",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2022_FBAR_FATCA_Checklist.xlsx.meta.json",
+                  "size": 313,
+                  "uploadedAt": "2025-11-29T11:53:22.139Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2022",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2022_Rental-Property-Details.xlsx",
+                  "size": 113493,
+                  "uploadedAt": "2025-11-29T11:53:22.139Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2022",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2022_Rental-Property-Details.xlsx.meta.json",
+                  "size": 316,
+                  "uploadedAt": "2025-11-29T11:53:22.140Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2022",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "folder.meta.json",
+                  "size": 822,
+                  "uploadedAt": "2025-11-29T11:53:22.140Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2022",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": []
+            },
+            {
+              "name": "2023",
+              "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2023",
+              "updatedAt": "2025-11-29T11:53:22.141Z",
+              "files": [
+                {
+                  "name": "2023_FBAR_FATCA_Checklist.xlsx",
+                  "size": 105582,
+                  "uploadedAt": "2025-11-29T11:53:22.141Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2023",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2023_FBAR_FATCA_Checklist.xlsx.meta.json",
+                  "size": 313,
+                  "uploadedAt": "2025-11-29T11:53:22.143Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2023",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2023_Rental-Property-Details.xlsx",
+                  "size": 113493,
+                  "uploadedAt": "2025-11-29T11:53:22.144Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2023",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2023_Rental-Property-Details.xlsx.meta.json",
+                  "size": 316,
+                  "uploadedAt": "2025-11-29T11:53:22.145Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2023",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "folder.meta.json",
+                  "size": 822,
+                  "uploadedAt": "2025-11-29T11:53:22.147Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2023",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": []
+            },
+            {
+              "name": "2024",
+              "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2024",
+              "updatedAt": "2025-11-29T11:53:22.148Z",
+              "files": [
+                {
+                  "name": "2024_FBAR_FATCA_Checklist.xlsx",
+                  "size": 105582,
+                  "uploadedAt": "2025-11-29T11:53:22.149Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2024",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2024_FBAR_FATCA_Checklist.xlsx.meta.json",
+                  "size": 313,
+                  "uploadedAt": "2025-11-29T11:53:22.149Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2024",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2024_Rental-Property-Details.xlsx",
+                  "size": 113493,
+                  "uploadedAt": "2025-11-29T11:53:22.150Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2024",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2024_Rental-Property-Details.xlsx.meta.json",
+                  "size": 316,
+                  "uploadedAt": "2025-11-29T11:53:22.150Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2024",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "folder.meta.json",
+                  "size": 822,
+                  "uploadedAt": "2025-11-29T11:53:22.150Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2024",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": []
+            },
+            {
+              "name": "2025",
+              "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2025",
+              "updatedAt": "2025-11-29T11:53:22.151Z",
+              "files": [
+                {
+                  "name": "2025_FBAR_FATCA_Checklist.xlsx",
+                  "size": 105582,
+                  "uploadedAt": "2025-11-29T11:53:22.151Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2025",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2025_FBAR_FATCA_Checklist.xlsx.meta.json",
+                  "size": 313,
+                  "uploadedAt": "2025-11-29T11:53:22.152Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2025",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2025_Rental-Property-Details.xlsx",
+                  "size": 113493,
+                  "uploadedAt": "2025-11-29T11:53:22.152Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2025",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "2025_Rental-Property-Details.xlsx.meta.json",
+                  "size": 316,
+                  "uploadedAt": "2025-11-29T11:53:22.153Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2025",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "folder.meta.json",
+                  "size": 822,
+                  "uploadedAt": "2025-11-29T11:53:22.154Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Client Uploaded Documents/2025",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": []
+            }
+          ]
+        },
+        {
+          "name": "Firm Documents Shared with Client",
+          "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Firm Documents Shared with Client",
+          "updatedAt": "2025-11-29T11:53:22.157Z",
+          "files": [
+            {
+              "name": "folder.meta.json",
+              "size": 303,
+              "uploadedAt": "2025-11-29T11:53:22.160Z",
+              "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Firm Documents Shared with Client",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": [
+            {
+              "name": "Draft Copies",
+              "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Firm Documents Shared with Client/Draft Copies",
+              "updatedAt": "2025-11-29T11:53:22.157Z",
+              "files": [
+                {
+                  "name": "folder.meta.json",
+                  "size": 301,
+                  "uploadedAt": "2025-11-29T11:53:22.157Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Firm Documents Shared with Client/Draft Copies",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": []
+            },
+            {
+              "name": "Filed Copies",
+              "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Firm Documents Shared with Client/Filed Copies",
+              "updatedAt": "2025-11-29T11:53:22.158Z",
+              "files": [
+                {
+                  "name": "folder.meta.json",
+                  "size": 301,
+                  "uploadedAt": "2025-11-29T11:53:22.158Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Firm Documents Shared with Client/Filed Copies",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": []
+            },
+            {
+              "name": "eFile Authorization",
+              "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Firm Documents Shared with Client/eFile Authorization",
+              "updatedAt": "2025-11-29T11:53:22.159Z",
+              "files": [
+                {
+                  "name": "folder.meta.json",
+                  "size": 315,
+                  "uploadedAt": "2025-11-29T11:53:22.159Z",
+                  "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Firm Documents Shared with Client/eFile Authorization",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": []
+            }
+          ]
+        },
+        {
+          "name": "Private",
+          "path": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Private",
+          "updatedAt": "2025-11-29T11:53:22.161Z",
+          "files": [
+            {
+              "name": "folder.meta.json",
+              "size": 251,
+              "uploadedAt": "2025-11-29T11:53:22.161Z",
+              "folder": "uploads/FolderTemplates/6918a45feae8ef80c2fcece4/Private",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": []
+        }
+      ]
+    },
+    {
+      "name": "69197316964c8b5decb6eb6e",
+      "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e",
+      "updatedAt": "2025-11-29T11:53:22.164Z",
+      "files": [
+        {
+          "name": "folder.meta.json",
+          "size": 363,
+          "uploadedAt": "2025-11-29T11:53:22.191Z",
+          "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        }
+      ],
+      "folders": [
+        {
+          "name": "Client Uploaded Documents",
+          "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents",
+          "updatedAt": "2025-11-29T11:53:22.164Z",
+          "files": [
+            {
+              "name": "folder.meta.json",
+              "size": 302,
+              "uploadedAt": "2025-11-29T11:53:22.167Z",
+              "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": [
+            {
+              "name": "2021",
+              "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/2021",
+              "updatedAt": "2025-11-29T11:53:22.164Z",
+              "files": [
+                {
+                  "name": "folder.meta.json",
+                  "size": 277,
+                  "uploadedAt": "2025-11-29T11:53:22.164Z",
+                  "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/2021",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": []
+            },
+            {
+              "name": "2022",
+              "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/2022",
+              "updatedAt": "2025-11-29T11:53:22.165Z",
+              "files": [
+                {
+                  "name": "folder.meta.json",
+                  "size": 277,
+                  "uploadedAt": "2025-11-29T11:53:22.165Z",
+                  "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/2022",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": []
+            },
+            {
+              "name": "test",
+              "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/test",
+              "updatedAt": "2025-11-29T11:53:22.167Z",
+              "files": [
+                {
+                  "name": "test.meta.json",
+                  "size": 1139,
+                  "uploadedAt": "2025-11-29T11:53:22.173Z",
+                  "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/test",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": [
+                {
+                  "name": "test",
+                  "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/test/test",
+                  "updatedAt": "2025-11-29T11:53:22.167Z",
+                  "files": [
+                    {
+                      "name": "test.meta.json",
+                      "size": 866,
+                      "uploadedAt": "2025-11-29T11:53:22.170Z",
+                      "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/test/test",
+                      "uploadedBy": "system",
+                      "readOnly": false,
+                      "readStatus": false,
+                      "signStatus": "",
+                      "authStatus": ""
+                    },
+                    {
+                      "name": "test.txt",
+                      "size": 0,
+                      "uploadedAt": "2025-11-29T11:53:22.171Z",
+                      "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/test/test",
+                      "uploadedBy": "system",
+                      "readOnly": false,
+                      "readStatus": false,
+                      "signStatus": "",
+                      "authStatus": ""
+                    },
+                    {
+                      "name": "test.txt.meta.json",
+                      "size": 291,
+                      "uploadedAt": "2025-11-29T11:53:22.171Z",
+                      "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/test/test",
+                      "uploadedBy": "system",
+                      "readOnly": false,
+                      "readStatus": false,
+                      "signStatus": "",
+                      "authStatus": ""
+                    }
+                  ],
+                  "folders": [
+                    {
+                      "name": "test in",
+                      "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/test/test/test in",
+                      "updatedAt": "2025-11-29T11:53:22.167Z",
+                      "files": [
+                        {
+                          "name": "test in.meta.json",
+                          "size": 404,
+                          "uploadedAt": "2025-11-29T11:53:22.167Z",
+                          "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/test/test/test in",
+                          "uploadedBy": "system",
+                          "readOnly": false,
+                          "readStatus": false,
+                          "signStatus": "",
+                          "authStatus": ""
+                        },
+                        {
+                          "name": "test in.txt",
+                          "size": 0,
+                          "uploadedAt": "2025-11-29T11:53:22.168Z",
+                          "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/test/test/test in",
+                          "uploadedBy": "system",
+                          "readOnly": false,
+                          "readStatus": false,
+                          "signStatus": "",
+                          "authStatus": ""
+                        },
+                        {
+                          "name": "test in.txt.meta.json",
+                          "size": 302,
+                          "uploadedAt": "2025-11-29T11:53:22.169Z",
+                          "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Client Uploaded Documents/test/test/test in",
+                          "uploadedBy": "system",
+                          "readOnly": false,
+                          "readStatus": false,
+                          "signStatus": "",
+                          "authStatus": ""
+                        }
+                      ],
+                      "folders": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Firm Documents Shared with Client",
+          "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Firm Documents Shared with Client",
+          "updatedAt": "2025-11-29T11:53:22.175Z",
+          "files": [
+            {
+              "name": "folder.meta.json",
+              "size": 303,
+              "uploadedAt": "2025-11-29T11:53:22.176Z",
+              "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Firm Documents Shared with Client",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": []
+        },
+        {
+          "name": "Private",
+          "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private",
+          "updatedAt": "2025-11-29T11:53:22.177Z",
+          "files": [
+            {
+              "name": "Invoice_153.pdf",
+              "size": 5745,
+              "uploadedAt": "2025-11-29T11:53:22.177Z",
+              "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Invoice_153.pdf.meta.json",
+              "size": 273,
+              "uploadedAt": "2025-11-29T11:53:22.178Z",
+              "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "folder.meta.json",
+              "size": 563,
+              "uploadedAt": "2025-11-29T11:53:22.178Z",
+              "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": [
+            {
+              "name": "test",
+              "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test",
+              "updatedAt": "2025-11-29T11:53:22.179Z",
+              "files": [
+                {
+                  "name": "test.meta.json",
+                  "size": 2781,
+                  "uploadedAt": "2025-11-29T11:53:22.185Z",
+                  "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "test.meta.json.meta.json",
+                  "size": 277,
+                  "uploadedAt": "2025-11-29T11:53:22.186Z",
+                  "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": [
+                {
+                  "name": "test",
+                  "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test",
+                  "updatedAt": "2025-11-29T11:53:22.179Z",
+                  "files": [
+                    {
+                      "name": "test.meta.json",
+                      "size": 2064,
+                      "uploadedAt": "2025-11-29T11:53:22.183Z",
+                      "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test",
+                      "uploadedBy": "system",
+                      "readOnly": false,
+                      "readStatus": false,
+                      "signStatus": "",
+                      "authStatus": ""
+                    },
+                    {
+                      "name": "test.meta.json.meta.json",
+                      "size": 282,
+                      "uploadedAt": "2025-11-29T11:53:22.183Z",
+                      "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test",
+                      "uploadedBy": "system",
+                      "readOnly": false,
+                      "readStatus": false,
+                      "signStatus": "",
+                      "authStatus": ""
+                    },
+                    {
+                      "name": "test.txt",
+                      "size": 0,
+                      "uploadedAt": "2025-11-29T11:53:22.184Z",
+                      "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test",
+                      "uploadedBy": "system",
+                      "readOnly": false,
+                      "readStatus": false,
+                      "signStatus": "",
+                      "authStatus": ""
+                    },
+                    {
+                      "name": "test.txt.meta.json",
+                      "size": 273,
+                      "uploadedAt": "2025-11-29T11:53:22.184Z",
+                      "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test",
+                      "uploadedBy": "system",
+                      "readOnly": false,
+                      "readStatus": false,
+                      "signStatus": "",
+                      "authStatus": ""
+                    },
+                    {
+                      "name": "test.txt.meta.json.meta.json",
+                      "size": 285,
+                      "uploadedAt": "2025-11-29T11:53:22.184Z",
+                      "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test",
+                      "uploadedBy": "system",
+                      "readOnly": false,
+                      "readStatus": false,
+                      "signStatus": "",
+                      "authStatus": ""
+                    }
+                  ],
+                  "folders": [
+                    {
+                      "name": "test in",
+                      "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test/test in",
+                      "updatedAt": "2025-11-29T11:53:22.179Z",
+                      "files": [
+                        {
+                          "name": "test in.meta.json",
+                          "size": 970,
+                          "uploadedAt": "2025-11-29T11:53:22.180Z",
+                          "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test/test in",
+                          "uploadedBy": "system",
+                          "readOnly": false,
+                          "readStatus": false,
+                          "signStatus": "",
+                          "authStatus": ""
+                        },
+                        {
+                          "name": "test in.meta.json.meta.json",
+                          "size": 292,
+                          "uploadedAt": "2025-11-29T11:53:22.180Z",
+                          "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test/test in",
+                          "uploadedBy": "system",
+                          "readOnly": false,
+                          "readStatus": false,
+                          "signStatus": "",
+                          "authStatus": ""
+                        },
+                        {
+                          "name": "test in.txt",
+                          "size": 0,
+                          "uploadedAt": "2025-11-29T11:53:22.180Z",
+                          "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test/test in",
+                          "uploadedBy": "system",
+                          "readOnly": false,
+                          "readStatus": false,
+                          "signStatus": "",
+                          "authStatus": ""
+                        },
+                        {
+                          "name": "test in.txt.meta.json",
+                          "size": 284,
+                          "uploadedAt": "2025-11-29T11:53:22.181Z",
+                          "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test/test in",
+                          "uploadedBy": "system",
+                          "readOnly": false,
+                          "readStatus": false,
+                          "signStatus": "",
+                          "authStatus": ""
+                        },
+                        {
+                          "name": "test in.txt.meta.json.meta.json",
+                          "size": 296,
+                          "uploadedAt": "2025-11-29T11:53:22.181Z",
+                          "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test/test/test in",
+                          "uploadedBy": "system",
+                          "readOnly": false,
+                          "readStatus": false,
+                          "signStatus": "",
+                          "authStatus": ""
+                        }
+                      ],
+                      "folders": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "test2",
+              "path": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test2",
+              "updatedAt": "2025-11-29T11:53:22.187Z",
+              "files": [
+                {
+                  "name": "folder.meta.json",
+                  "size": 716,
+                  "uploadedAt": "2025-11-29T11:53:22.187Z",
+                  "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test2",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "test in.txt",
+                  "size": 0,
+                  "uploadedAt": "2025-11-29T11:53:22.188Z",
+                  "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test2",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "test in.txt.meta.json",
+                  "size": 272,
+                  "uploadedAt": "2025-11-29T11:53:22.188Z",
+                  "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test2",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "test.txt",
+                  "size": 0,
+                  "uploadedAt": "2025-11-29T11:53:22.188Z",
+                  "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test2",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                },
+                {
+                  "name": "test.txt.meta.json",
+                  "size": 269,
+                  "uploadedAt": "2025-11-29T11:53:22.189Z",
+                  "folder": "uploads/FolderTemplates/69197316964c8b5decb6eb6e/Private/test2",
+                  "uploadedBy": "system",
+                  "readOnly": false,
+                  "readStatus": false,
+                  "signStatus": "",
+                  "authStatus": ""
+                }
+              ],
+              "folders": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

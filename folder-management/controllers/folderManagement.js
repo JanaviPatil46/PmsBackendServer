@@ -1,5 +1,8 @@
 
-const fs = require("fs");
+//const fs = require("fs");
+const fs = require("fs-extra");
+const unzipper = require("unzipper");
+const stream = require("stream")
 const path = require("path");
 const multer = require("multer");
 const fse = require("fs-extra"); // safer recursive copy/delete
@@ -43,6 +46,276 @@ function writeMeta(folderPath, data, fileName = null) {
   }
 }
 
+
+//new code 
+
+// Multer memory storage
+const storageFolderzip = multer.memoryStorage();
+const uploadFolder = multer({
+  storage: storageFolderzip,   // FIXED
+  fileFilter: (req, file, cb) => {
+    if (!file.originalname) {
+      console.log("Skipping empty file...");
+      return cb(null, false);
+    }
+    cb(null, true);
+  },
+});
+
+
+
+//const uploadFolderZipFplder = async (req, res) => {
+ // console.log("jan v kujaki");
+
+//  if (!req.file) {
+ //   return res.status(400).json({ error: "Missing ZIP file" });
+ // }
+
+ // const folderPath = req.body.folderPath || "";
+ // const extractPath = path.join(__dirname, "../uploads/FolderTemplates", folderPath);
+
+ // try {
+  //  console.log("Extracting ZIP to:", extractPath);
+  //  await fs.ensureDir(extractPath);
+
+  //  const zipBuffer = req.file.buffer;
+  //  const zipStream = unzipper.Extract({ path: extractPath });
+
+  //  const bufferStream = new stream.PassThrough();
+  //  bufferStream.end(zipBuffer);
+
+   // bufferStream.pipe(zipStream);
+
+  //  zipStream.on("close", async () => {
+    //  console.log("Extraction complete");
+
+    //  try {
+      //  await createMetaForFilesAndFoldersDetailed(extractPath);
+
+     //   res.json({
+       //   message: "Folder extracted + META created!",
+      //    path: extractPath,
+     ///   });
+
+    //  } catch (metaErr) {
+      //  console.error("Meta creation failed:", metaErr);
+     //   res.status(500).json({ error: "Meta creation failed" });
+     // }
+   // });
+
+   // zipStream.on("error", (err) => {
+   //   console.error("Extraction error:", err);
+   //   res.status(500).json({ error: "Extraction failed" });
+   // });
+
+  //} catch (error) {
+  //  console.error("Server error:", error);
+  //  res.status(500).json({ error: "Server error" });
+  //}
+//};
+
+
+
+
+//async function createMetaForFilesAndFoldersDetailed(folderPath, folderRelativePath = "") {
+ // const items = await fs.readdir(folderPath, { withFileTypes: true });
+
+ // const folderName = path.basename(folderPath);
+ // const currentFolderPath = path.join(folderRelativePath, folderName).replace(/\\/g, "/");
+
+  //const folderMeta = {
+  //  name: folderName,
+  //  path: currentFolderPath,
+ //   updatedAt: new Date().toISOString(),
+ //   // STRUCTURE YOU WANT
+  //  files: [],
+  //  folders: []
+ // };
+
+ // for (const item of items) {
+  //  const fullPath = path.join(folderPath, item.name);
+
+  //  if (item.isDirectory()) {
+ //     // Recursive meta for subfolder
+  //    const subFolderMeta = await createMetaForFilesAndFoldersDetailed(fullPath, currentFolderPath);
+
+  //    folderMeta.folders.push(subFolderMeta);
+
+   //   // Write subfolder meta INSIDE that folder
+   //   const subFolderMetaPath = path.join(fullPath, `${item.name}.meta.json`);
+   //   await fs.writeFile(subFolderMetaPath, JSON.stringify(subFolderMeta, null, 2));
+
+   // } else {
+   //   // FILE META (UNCHANGED)
+    //  const stat = await fs.stat(fullPath);
+
+    //  const fileMeta = {
+      //  name: item.name,
+     //   size: stat.size,
+     //   uploadedAt: new Date().toISOString(),
+     //   folder: currentFolderPath,
+     //   uploadedBy: "system",
+      //  readOnly: false,
+     //   readStatus: false,
+      //  signStatus: "",
+     //   authStatus: ""
+    //  };
+
+    //  // Write file meta inside folder
+    //  await fs.writeFile(fullPath + ".meta.json", JSON.stringify(fileMeta, null, 2));
+
+     // folderMeta.files.push(fileMeta);
+  //  }
+ // }
+
+ // // Write current folder meta INSIDE THAT FOLDER
+ // const folderMetaPath = path.join(folderPath, `${folderName}.meta.json`);
+ // await fs.writeFile(folderMetaPath, JSON.stringify(folderMeta, null, 2));
+
+ // console.log("Folder META created:", folderMetaPath);
+
+  //return folderMeta;
+//}
+
+// ?? MAIN CONTROLLER
+const uploadFolderZipFplder = async (req, res) => {
+  if (!req.file) return res.status(400).json({ error: "Missing ZIP file" });
+
+  const folderPath = req.body.folderPath || "";
+  const extractPath = path.join(__dirname, "../uploads/FolderTemplates", folderPath);
+
+  try {
+    console.log("Extracting ZIP to:", extractPath);
+    await fs.ensureDir(extractPath);
+
+    await extractZipWithoutRoot(req.file.buffer, extractPath);  // ? new extraction
+    await removeDoubleFolder(extractPath);                      // ? FIX test/test issue
+
+    await createMetaForFilesAndFoldersDetailed(extractPath);    // ? your META generator
+
+    return res.json({
+      message: "Folder extracted and META created successfully",
+      path: extractPath,
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Extraction server error" });
+  }
+};
+// ----------------------------------------------
+// ?? Extract ZIP while removing Top Parent Folder
+// ----------------------------------------------
+function extractZipWithoutRoot(buffer, outputPath) {
+  return new Promise((resolve, reject) => {
+    const zip = unzipper.Parse();
+
+    zip.on("entry", async (entry) => {
+      const original = entry.path.replace(/\\/g, "/");
+      const clean = original.split("/").slice(1).join("/"); // remove root folder level
+
+      if (!clean) return entry.autodrain();
+
+      const fullPath = path.join(outputPath, clean);
+
+      if (entry.type === "Directory") {
+        await fs.ensureDir(fullPath);
+        entry.autodrain();
+      } else {
+        await fs.ensureDir(path.dirname(fullPath));
+        entry.pipe(fs.createWriteStream(fullPath));
+      }
+    });
+
+    zip.on("close", resolve);
+    zip.on("error", reject);
+
+    const pass = new stream.PassThrough();
+    pass.end(buffer);
+    pass.pipe(zip);
+  });
+}
+
+
+// --------------------------------------------------
+// ?? Remove nested Duplicate Folder (test/test issue)
+// --------------------------------------------------
+async function removeDoubleFolder(mainPath) {
+  const rootItems = await fs.readdir(mainPath);
+  if (rootItems.length !== 1) return;  // only flatten if single folder exists
+
+  const first = path.join(mainPath, rootItems[0]);
+  if (!(await fs.stat(first)).isDirectory()) return;
+
+  const inside = await fs.readdir(first);
+
+  if (inside.length === 1 && (await fs.stat(path.join(first, inside[0]))).isDirectory()) {
+    const nested = path.join(first, inside[0]);
+    console.log("? Found double nested folder ? Fixing...");
+
+    await fs.copy(nested, mainPath);
+    await fs.remove(first);
+
+    console.log("? Fixed double folder structure");
+  }
+}
+
+// --------------------------------------------------
+// ?? Your original META creation (unchanged)
+// --------------------------------------------------
+async function createMetaForFilesAndFoldersDetailed(folderPath, folderRelativePath = "") {
+  const items = await fs.readdir(folderPath, { withFileTypes: true });
+
+  const folderName = path.basename(folderPath);
+  const currentFolderPath = path.join(folderRelativePath, folderName).replace(/\\/g, "/");
+
+  const folderMeta = {
+    name: folderName,
+    path: currentFolderPath,
+    updatedAt: new Date().toISOString(),
+    files: [],
+    folders: []
+  };
+
+  for (const item of items) {
+    const fullPath = path.join(folderPath, item.name);
+
+    if (item.isDirectory()) {
+      const subMeta = await createMetaForFilesAndFoldersDetailed(fullPath, currentFolderPath);
+      folderMeta.folders.push(subMeta);
+
+      await fs.writeFile(
+        path.join(fullPath, `${item.name}.meta.json`),
+        JSON.stringify(subMeta, null, 2)
+      );
+
+    } else {
+      const stat = await fs.stat(fullPath);
+
+      const fileMeta = {
+        name: item.name,
+        size: stat.size,
+        uploadedAt: new Date().toISOString(),
+        folder: currentFolderPath,
+        uploadedBy: "system",
+        readOnly: false,
+        readStatus: false,
+        signStatus: "",
+        authStatus: ""
+      };
+
+      await fs.writeFile(fullPath + ".meta.json", JSON.stringify(fileMeta, null, 2));
+      folderMeta.files.push(fileMeta);
+    }
+  }
+
+  await fs.writeFile(
+    path.join(folderPath, `${folderName}.meta.json`),
+    JSON.stringify(folderMeta, null, 2)
+  );
+
+  return folderMeta;
+}
 // ============================
 // ? Multer Storage (for files only)
 // ============================
@@ -1002,5 +1275,5 @@ module.exports = {
   setFileReadOnly,
   moveItem,
   renameItem,
-  updateStatus,applyTemplateToAccount
+  updateStatus,applyTemplateToAccount,uploadFolderZipFplder,uploadFolder 
 };

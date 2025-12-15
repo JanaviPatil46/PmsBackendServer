@@ -9,9 +9,7 @@ const messageschema = new mongoose.Schema({
         
     },
     senderid: {
-      // type: mongoose.Schema.Types.ObjectId,
-      //      ref: "User",
- type: String,
+      type: String,
 
     },
     time: {
@@ -28,6 +26,20 @@ const messageschema = new mongoose.Schema({
     },
 
 });
+const clienttasksSchema = new mongoose.Schema({
+    id: {
+        type: Number,
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    },
+    checked: {
+        type: Boolean,
+        default: false,
+    }
+}, { _id: false });
 
 const AccountwiseChatSchema = new mongoose.Schema({
     accountid: {
@@ -54,12 +66,7 @@ const AccountwiseChatSchema = new mongoose.Schema({
     },
 
     description : [ messageschema ],
-    // chatstatus:{
-    //     type: Boolean,
-    //     default:false
-    // },
-    
-
+ 
     sendreminderstoclient: {
         type: Boolean,
     },
@@ -72,9 +79,7 @@ const AccountwiseChatSchema = new mongoose.Schema({
         type: Number,
     },
 
-    clienttasks: {
-        type: Array
-    },
+    clienttasks: [clienttasksSchema],
     adminUserId:{
        type: mongoose.Schema.Types.ObjectId,
       ref: "User",

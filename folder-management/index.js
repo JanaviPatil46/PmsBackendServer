@@ -15,25 +15,31 @@ app.use(cors({
 
     // Allow all localhost URLs
     if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
-      return callback(null, true);
+     return callback(null, true);
     }
 
     // Allow all subdomains or domains of snptaxes.com
-    if (origin.endsWith('.snptaxes.com') || origin === 'https://snptaxes.com') {
-      return callback(null, true);
-    }
-
+   if (origin &&
+    (origin.endsWith(".snptaxes.com") || origin === "https://snptaxes.com" || origin === "https://www.snptaxes.com")
+) {
+   return callback(null, true);
+}
     // Otherwise, block
     return callback(new Error('Not allowed by CORS'));
   },
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   credentials: true,
 }));
 
-app.use(express.json()); // ? Needed for JSON body
-app.use(express.urlencoded({ extended: true })); // ? For form submissions
 
+//app.use(cors());
+
+
+//app.use(express.json()); // ? Needed for JSON body
+//app.use(express.urlencoded({ extended: true })); // ? For form submissions
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI)

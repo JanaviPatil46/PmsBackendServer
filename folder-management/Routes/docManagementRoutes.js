@@ -11,7 +11,7 @@ const {
   deleteItem,
   deleteFolder,
   setFileReadOnly,
-  moveItem,renameItem,applyTemplateToAccount,updateStatus
+  moveItem,renameItem,applyTemplateToAccount,updateStatus,uploadFolder, uploadFolderZipFplder
 } = require("../controllers/folderManagement");
 
 // ============================
@@ -60,4 +60,6 @@ router.post("/rename", renameItem);
 router.post("/updateStatus", updateStatus);
 
 router.post('/apply-template', applyTemplateToAccount);
+
+router.post("/upload-folder", uploadFolder .single("folderZip"), uploadFolderZipFplder);
 module.exports = router;

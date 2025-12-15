@@ -167,6 +167,10 @@ unique:true
       type: Boolean,
       default: false, // Provide a default value if needed
     },
+clientFacing_status: {
+      type: Boolean,
+      default: false, // Provide a default value if needed
+    },
 
     stages: [stageSchema],
 

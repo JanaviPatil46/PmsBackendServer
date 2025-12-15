@@ -198,7 +198,7 @@ router.post("/", async (req, res) => {
           const contact = await Contacts.findById(accContact.contact).lean();
           if (!contact || !contact.email) continue;
 
-          const proposalLink = `https://www.snptaxes.com/client/proposal/${proposal._id}`;
+          const proposalLink = `https://snptaxes.com/client/client/login`;
           
           // Use replacePlaceholders for proposal name
           const proposalName = replacePlaceholders(proposal.general?.proposalName || "Proposal Document", {
@@ -239,9 +239,7 @@ router.post("/", async (req, res) => {
                 Review & Sign
               </a>
 
-            <p>If the button does not work, open this link:</p>
-              <p><a href="${proposalLink}">${proposalLink}</a></p>
-            `,
+                       `,
           });
 
           console.log(`?? Proposal email sent to ${contact.email}`);

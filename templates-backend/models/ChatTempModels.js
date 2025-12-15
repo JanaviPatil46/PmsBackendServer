@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const clienttasksSchema = new mongoose.Schema({
     id: {
-        type: String,
+        type: Number,
         
     },
     text: {
