@@ -1,54 +1,10 @@
-import User from "../models/User.js";
-import Contact from "../models/Contact.js";
-import bcrypt from "bcryptjs";
-// CREATE user from contact with login=true
+// import User from "../models/User.js";
+// import Contact from "../models/Contact.js";
+// import bcrypt from "bcryptjs";
+const User = require("../models/userModel.js");
+const Contact = require("../models/Contact.js");
+const bcrypt = require("bcryptjs");
 
-// export const createUserFromContact = async (req, res) => {
-//   try {
-//     const { contactId } = req.body;
-
-//     // Fetch contact
-//     const contact = await Contact.findById(contactId);
-//     if (!contact) {
-//       return res.status(404).json({ error: "Contact not found" });
-//     }
-
-//     if (!contact.login) {
-//       return res
-//         .status(400)
-//         .json({ error: "This contact does not have login enabled" });
-//     }
-
-//     // Generate username from name
-//     const username = `${contact.firstName} ${contact.lastName}`.toLowerCase();
-
-//     // Hash a default password
-//     const hashedPassword = await bcrypt.hash("changeme123", 10);
-
-//     // Create user
-//     const newUser = new User({
-//       username,
-//       email: contact.email,
-//       password: hashedPassword,
-//       role: "client",
-//       login: contact.login,
-//       notify: contact.notify,
-//       emailSync: contact.emailSync,
-//       contact: contact._id,
-//     //   accountId,
-//     });
-
-//     await newUser.save();
-
-//     res.status(201).json({
-//       message: "User created from contact successfully",
-//       user: newUser,
-//     });
-//   } catch (error) {
-//     console.error("Error creating user from contact:", error);
-//     res.status(500).json({ error: "Server error" });
-//   }
-// };
 export const createUserFromContact = async (req, res) => {
   try {
     const { contactId, password } = req.body;

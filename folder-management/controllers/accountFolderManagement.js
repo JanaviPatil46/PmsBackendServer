@@ -3,11 +3,11 @@ const fs = require("fs-extra");
 const path = require("path");
 const multer = require("multer");
 const unzipper = require("unzipper");
-const stream = require("stream")
+const stream = require("stream");
 const fse = require("fs-extra"); // safer recursive copy/delete
 const InvoiceLock = require("../models/InvoiceLock");
-const Approvals = require("../models/Approval")
-const EsignRequests = require("../models/EsignRequest")
+const Approvals = require("../models/Approval");
+const EsignRequests = require("../models/EsignRequest");
 // ============================
 // ?? Base Upload Path & Helpers
 // ============================
@@ -48,7 +48,7 @@ function writeMeta(folderPath, data, fileName = null) {
 // Multer memory storage
 const storageFolderzip = multer.memoryStorage();
 const uploadFolder = multer({
-  storage: storageFolderzip,   // FIXED
+  storage: storageFolderzip, // FIXED
   fileFilter: (req, file, cb) => {
     if (!file.originalname) {
       console.log("Skipping empty file...");
@@ -62,28 +62,543 @@ const uploadFolder = multer({
 const uploadFolderZipFplder = async (req, res) => {
   if (!req.file) return res.status(400).json({ error: "Missing ZIP file" });
 
-  const folderPath = req.body.folderPath || "";
-  const extractPath = path.join(__dirname, "../uploads/accounts", folderPath);
+    const folderPath = req.body.folderPath || "";
+      const extractPath = path.join(__dirname, "../uploads/accounts", folderPath);
 
-  try {
-    console.log("Extracting ZIP to:", extractPath);
-    await fs.ensureDir(extractPath);
+        try {
+            console.log("Extracting ZIP to:", extractPath);
+                await fs.ensureDir(extractPath);
 
-    await extractZipWithoutRoot(req.file.buffer, extractPath);  // ? new extraction
-    await removeDoubleFolder(extractPath);                      // ? FIX test/test issue
+                    await extractZipWithoutRoot(req.file.buffer, extractPath); // ? new extraction
+                        await removeDoubleFolder(extractPath); // ? FIX test/test issue
 
-    await createMetaForFilesAndFoldersDetailed(extractPath);    // ? your META generator
+    await createMetaForFilesAndFoldersDetailed(extractPath); // ? your META generator
 
     return res.json({
       message: "Folder extracted and META created successfully",
       path: extractPath,
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Extraction server error" });
   }
 };
+
+
+// jan v 
+// const mergeUnzippedFolderToTarget = async (req, res) => {
+
+//   console.log("jan v kujaki");
+//   if (!req.file) return res.status(400).json({ error: "Missing ZIP file" });
+
+//   const targetPath = path.join(
+//     __dirname,
+//     "../uploads/accounts",
+//     req.body.folderPath || ""
+//   );
+
+//   try {
+//     await fs.ensureDir(targetPath);
+//     console.log("Extracting ZIP into:", targetPath);
+
+//     const directory = await unzipper.Open.buffer(req.file.buffer);
+
+//     for (const entry of directory.files) {
+//       let p = entry.path.replace(/\\/g, "/");
+
+//       // ignore junk
+//       if (!p || p.startsWith("__MACOSX")) continue;
+
+//       const parts = p.split("/").filter(Boolean);
+
+//       // 🔥 DROP ROOT FOLDER ALWAYS
+//       parts.shift();
+
+//       if (!parts.length) continue;
+
+//       // ❌ IGNORE DIRECTORY ENTRIES COMPLETELY
+//       if (entry.type === "Directory") continue;
+
+//       const finalPath = path.join(targetPath, ...parts);
+
+//       // ✅ folders created ONLY from file paths
+//       await fs.ensureDir(path.dirname(finalPath));
+//       entry.stream().pipe(fs.createWriteStream(finalPath));
+//     }
+
+//     await createMetaForFilesAndFoldersDetailed(targetPath);
+
+//     res.json({
+//       message: "ZIP extracted correctly (no root folder)",
+//       targetPath,
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: err.message });
+//   }
+// };
+// const mergeUnzippedFolderToTarget = async (req, res) => {
+//   try {
+//     if (!req.file) {
+//       return res.status(400).json({ error: "Missing ZIP file" });
+//     }
+
+//     const targetPath = path.join(
+//       __dirname,
+//       "../uploads/accounts",
+//       req.body.folderPath || ""
+//     );
+
+//     await fs.ensureDir(targetPath);
+//     console.log("Extracting ZIP into:", targetPath);
+
+//     const directory = await unzipper.Open.buffer(req.file.buffer);
+
+//     // -------------------------
+//     // Detect top-level entries in ZIP
+//     // -------------------------
+//     const topLevelNames = new Set();
+//     directory.files.forEach((f) => {
+//       if (f.path && !f.path.startsWith("__MACOSX")) {
+//         const parts = f.path.replace(/\\/g, "/").split("/").filter(Boolean);
+//         if (parts.length > 0) topLevelNames.add(parts[0]);
+//       }
+//     });
+
+//     let removeRoot = topLevelNames.size === 1; // only remove root if single folder
+
+//     // -------------------------
+//     // Extract all entries
+//     // -------------------------
+//     for (const entry of directory.files) {
+//       let entryPath = entry.path.replace(/\\/g, "/");
+
+//       if (!entryPath || entryPath.startsWith("__MACOSX")) continue;
+
+//       let parts = entryPath.split("/").filter(Boolean);
+
+//       // Remove root folder if only one top-level folder exists
+//       if (removeRoot) {
+//         parts.shift();
+//       }
+
+//       if (!parts.length) continue;
+
+//       const finalPath = path.join(targetPath, ...parts);
+
+//       if (entry.type === "Directory") {
+//         await fs.ensureDir(finalPath);
+//         continue;
+//       }
+
+//       await fs.ensureDir(path.dirname(finalPath));
+
+//       await new Promise((resolve, reject) => {
+//         entry
+//           .stream()
+//           .pipe(fs.createWriteStream(finalPath))
+//           .on("finish", resolve)
+//           .on("error", reject);
+//       });
+//     }
+
+//     // -------------------------
+//     // Update metadata
+//     // -------------------------
+//     await createMetaForFilesAndFoldersDetailed(targetPath);
+
+//     res.json({
+//       success: true,
+//       message: "ZIP extracted successfully (no extra root folder)",
+//       targetPath,
+//     });
+//   } catch (err) {
+//     console.error("ZIP extract error:", err);
+//     res.status(500).json({
+//       success: false,
+//       error: "Failed to extract ZIP",
+//       details: err.message,
+//     });
+//   }
+// }; // working only unzip functionality 
+
+
+
+
+
+// const mergeUnzippedFolderToTarget = async (req, res) => {
+//   try {
+//     if (!req.file) {
+//       return res.status(400).json({ error: "Missing ZIP file" });
+//     }
+
+//     const targetPath = path.join(
+//       __dirname,
+//       "../uploads/accounts",
+//       req.body.folderPath || ""
+//     );
+
+//     await fs.ensureDir(targetPath);
+//     console.log("Extracting ZIP into:", targetPath);
+
+//     const directory = await unzipper.Open.buffer(req.file.buffer);
+
+//     // Detect top-level entries in ZIP
+//     const topLevelNames = new Set();
+//     directory.files.forEach((f) => {
+//       if (f.path && !f.path.startsWith("__MACOSX")) {
+//         const parts = f.path.replace(/\\/g, "/").split("/").filter(Boolean);
+//         if (parts.length > 0) topLevelNames.add(parts[0]);
+//       }
+//     });
+
+//     const removeRoot = topLevelNames.size === 1;
+
+//     // Temporary extraction folder (to handle move)
+//     // Use parent of targetPath to prevent extra root folder
+//     const parentPath = path.dirname(targetPath);
+//     const tempExtractPath = parentPath;
+//     await fs.ensureDir(tempExtractPath);
+
+//     // Extract all entries to temp folder first
+//     for (const entry of directory.files) {
+//       let entryPath = entry.path.replace(/\\/g, "/");
+
+//       if (!entryPath || entryPath.startsWith("__MACOSX")) continue;
+
+//       let parts = entryPath.split("/").filter(Boolean);
+
+//       if (removeRoot) parts.shift(); // remove root folder if single root
+
+//       if (!parts.length) continue;
+
+//       const finalPath = path.join(tempExtractPath, ...parts);
+
+//       if (entry.type === "Directory") {
+//         await fs.ensureDir(finalPath);
+//         continue;
+//       }
+
+//       await fs.ensureDir(path.dirname(finalPath));
+
+//       await new Promise((resolve, reject) => {
+//         entry
+//           .stream()
+//           .pipe(fs.createWriteStream(finalPath))
+//           .on("finish", resolve)
+//           .on("error", reject);
+//       });
+//     }
+
+//     // -------------------------
+//     // Remove extra root folder if it exists
+//     // -------------------------
+//     if (removeRoot) {
+//       const extraRootFolder = path.join(parentPath, [...topLevelNames][0]);
+//       if (await fs.pathExists(extraRootFolder)) {
+//         await fs.remove(extraRootFolder);
+//         console.log("Deleted extra root folder:", extraRootFolder);
+//       }
+//     }
+
+//     res.json({
+//       success: true,
+//       message: "ZIP extracted and contents moved successfully",
+//       targetPath,
+//     });
+//   } catch (err) {
+//     console.error("ZIP extract error:", err);
+//     res.status(500).json({
+//       success: false,
+//       error: "Failed to extract ZIP",
+//       details: err.message,
+//     });
+//   }
+// };  wrking fine only metafile is not creted 
+
+const mergeUnzippedFolderToTarget = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "Missing ZIP file" });
+    }
+
+    const targetPath = path.join(
+      __dirname,
+      "../uploads/accounts",
+      req.body.folderPath || ""
+    );
+
+    await fs.ensureDir(targetPath);
+    console.log("Extracting ZIP into:", targetPath);
+
+    const directory = await unzipper.Open.buffer(req.file.buffer);
+
+    // Detect top-level entries in ZIP
+    const topLevelNames = new Set();
+    directory.files.forEach((f) => {
+      if (f.path && !f.path.startsWith("__MACOSX")) {
+        const parts = f.path.replace(/\\/g, "/").split("/").filter(Boolean);
+        if (parts.length > 0) topLevelNames.add(parts[0]);
+      }
+    });
+
+    const removeRoot = topLevelNames.size === 1;
+
+    // Temporary extraction folder (to handle move)
+    // Use parent of targetPath to prevent extra root folder
+    const parentPath = path.dirname(targetPath);
+    const tempExtractPath = parentPath;
+    await fs.ensureDir(tempExtractPath);
+
+    // Extract all entries to temp folder first
+    for (const entry of directory.files) {
+      let entryPath = entry.path.replace(/\\/g, "/");
+
+      if (!entryPath || entryPath.startsWith("__MACOSX")) continue;
+
+      let parts = entryPath.split("/").filter(Boolean);
+
+      if (removeRoot) parts.shift(); // remove root folder if single root
+
+      if (!parts.length) continue;
+
+      const finalPath = path.join(tempExtractPath, ...parts);
+
+      if (entry.type === "Directory") {
+        await fs.ensureDir(finalPath);
+        continue;
+      }
+
+      await fs.ensureDir(path.dirname(finalPath));
+
+      await new Promise((resolve, reject) => {
+        entry
+          .stream()
+          .pipe(fs.createWriteStream(finalPath))
+          .on("finish", resolve)
+          .on("error", reject);
+      });
+    }
+  
+
+    // -------------------------
+    // Remove extra root folder if it exists
+    // -------------------------
+    if (removeRoot) {
+      const extraRootFolder = path.join(parentPath, [...topLevelNames][0]);
+      if (await fs.pathExists(extraRootFolder)) {
+        await fs.remove(extraRootFolder);
+        console.log("Deleted extra root folder:", extraRootFolder);
+      }
+    }
+
+    // -------------------------
+    // Create meta files for all extracted folders/files
+
+    // -------------------------
+
+   // console.log("hi how are you ",tempExtractPath);
+
+      await createMetaForFilesAndFoldersDetailed(tempExtractPath);
+    
+
+    res.json({
+      success: true,
+      message: "ZIP extracted and contents moved successfully",
+      targetPath,
+    });
+  } catch (err) {
+    console.error("ZIP extract error:", err);
+    res.status(500).json({
+      success: false,
+      error: "Failed to extract ZIP",
+      details: err.message,
+    });
+  }
+};
+
+
+
+
+// const mergeUnzippedFolderToTarget = async (req, res) => {
+//   if (!req.file) return res.status(400).json({ error: "Missing ZIP file" });
+
+//   const targetPath = path.join(
+//     __dirname,
+//     "../uploads/accounts",
+//     req.body.folderPath || ""
+//   );
+
+//   try {
+//     await fs.ensureDir(targetPath);
+//     console.log("Extracting ggggg ZIP into:", targetPath);
+
+//     const directory = await unzipper.Open.buffer(req.file.buffer);
+
+//     for (const entry of directory.files) {
+//       let p = entry.path.replace(/\\/g, "/");
+
+//       // ignore junk
+//       if (!p || p.startsWith("__MACOSX")) continue;
+
+//       const segments = p.split("/").filter(Boolean);
+
+//       // 🔥 ALWAYS REMOVE FIRST SEGMENT
+//       segments.shift();
+
+//       // nothing left? skip
+//       if (!segments.length) continue;
+
+//       const finalPath = path.join(targetPath, ...segments);
+
+//       if (entry.type === "Directory") {
+//         await fs.ensureDir(finalPath);
+//       } else {
+//         await fs.ensureDir(path.dirname(finalPath));
+//         entry.stream().pipe(fs.createWriteStream(finalPath));
+//       }
+//     }
+
+//     await createMetaForFilesAndFoldersDetailed(targetPath);
+
+//     res.json({
+//       message: "ZIP extracted, root folder nuked 🔥",
+//       targetPath,
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: err.message });
+//   }
+// };
+
+
+
+
+
+
+// const mergeUnzippedFolderToTarget = async (req, res) => {
+//   if (!req.file) return res.status(400).json({ error: "Missing ZIP file" });
+
+//   const folderPath = req.body.folderPath || "";
+//   const extractPath = path.join(__dirname, "../uploads/temp", Date.now().toString());
+//   const targetPath = path.join(__dirname, "../uploads/accounts", folderPath);
+
+//   try {
+//     console.log("Extracting ZIP to temp:", extractPath);
+//     await fs.ensureDir(extractPath);
+
+//     // 1️⃣ Extract ZIP directly
+//     await new Promise((resolve, reject) => {
+//       const zip = unzipper.Parse();
+      
+//       zip.on("entry", async (entry) => {
+//         const fullPath = path.join(extractPath, entry.path);
+        
+//         if (entry.type === "Directory") {
+//           await fs.ensureDir(fullPath);
+//           entry.autodrain();
+//         } else {
+//           await fs.ensureDir(path.dirname(fullPath));
+//           entry.pipe(fs.createWriteStream(fullPath));
+//         }
+//       });
+      
+//       zip.on("close", resolve);
+//       zip.on("error", reject);
+      
+//       const pass = new stream.PassThrough();
+//       pass.end(req.file.buffer);
+//       pass.pipe(zip);
+//     });
+
+//     // 2️⃣ Find the actual source content (skip the outer folder if only one exists)
+//     let sourceContentPath = extractPath;
+//     const items = await fs.readdir(extractPath);
+    
+//     if (items.length === 1) {
+//       const possibleFolder = path.join(extractPath, items[0]);
+//       const stat = await fs.stat(possibleFolder);
+//       if (stat.isDirectory()) {
+//         sourceContentPath = possibleFolder;
+//         console.log("Using content from folder:", items[0]);
+//       }
+//     }
+
+//     // 3️⃣ Ensure target exists
+//     await fs.ensureDir(targetPath);
+
+//     // 4️⃣ Copy all items from sourceContentPath to targetPath
+//     const itemsToCopy = await fs.readdir(sourceContentPath);
+    
+//     for (const item of itemsToCopy) {
+//       const src = path.join(sourceContentPath, item);
+//       const dest = path.join(targetPath, item);
+//       await fs.copy(src, dest, { overwrite: true });
+//       console.log(`Copied: ${item}`);
+//     }
+
+//     // 5️⃣ Create META
+//     await createMetaForFilesAndFoldersDetailed(targetPath);
+
+//     // 6️⃣ Cleanup
+//     await fs.remove(extractPath);
+
+//     return res.json({
+//       message: "Folder contents copied successfully",
+//       targetPath: targetPath,
+//       itemsCopied: itemsToCopy.length,
+//     });
+//   } catch (error) {
+//     console.error("Error:", error);
+//     if (await fs.pathExists(extractPath)) {
+//       await fs.remove(extractPath);
+//     }
+//     res.status(500).json({ error: "Extraction error: " + error.message });
+//   }
+// };
+// const mergeUnzippedFolderToTarget = async (req, res) => {
+//   if (!req.file) return res.status(400).json({ error: "Missing ZIP file" });
+
+//   const folderPath = req.body.folderPath || "";     // target folder
+//   const extractPath = path.join(__dirname, "../uploads/temp", Date.now().toString());
+//   const targetPath = path.join(__dirname, "../uploads/accounts", folderPath);
+
+//   try {
+//     console.log("Extracting ZIP to temp:", extractPath);
+//     await fs.ensureDir(extractPath);
+
+//     // 1️⃣ Unzip to temp
+//     await extractZipWithoutRoot(req.file.buffer, extractPath);
+//     await removeDoubleFolder(extractPath); // handles test/test.zip issue
+
+//     // 2️⃣ Ensure target folder exists
+//     await fs.ensureDir(targetPath);
+
+//     // 3️⃣ COPY ONLY CONTENTS INSIDE UNZIPPED FOLDER
+//     const extractedItems = await fs.readdir(extractPath);
+//     for (const item of extractedItems) {
+//       const src = path.join(extractPath, item);
+//       const dest = path.join(targetPath, item);
+
+//       await fs.copy(src, dest, { overwrite: true });
+//     }
+
+//     // 4️⃣ Create META in target folder
+//     await createMetaForFilesAndFoldersDetailed(targetPath);
+
+//     // 5️⃣ Cleanup temp
+//     await fs.remove(extractPath);
+
+//     return res.json({
+//       message: "Folder contents copied successfully",
+//       path: targetPath,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Extraction server error" });
+//   }
+// };
+
 // ----------------------------------------------
 // ?? Extract ZIP while removing Top Parent Folder
 // ----------------------------------------------
@@ -117,20 +632,22 @@ function extractZipWithoutRoot(buffer, outputPath) {
   });
 }
 
-
 // --------------------------------------------------
 // ?? Remove nested Duplicate Folder (test/test issue)
 // --------------------------------------------------
 async function removeDoubleFolder(mainPath) {
   const rootItems = await fs.readdir(mainPath);
-  if (rootItems.length !== 1) return;  // only flatten if single folder exists
+  if (rootItems.length !== 1) return; // only flatten if single folder exists
 
   const first = path.join(mainPath, rootItems[0]);
   if (!(await fs.stat(first)).isDirectory()) return;
 
   const inside = await fs.readdir(first);
 
-  if (inside.length === 1 && (await fs.stat(path.join(first, inside[0]))).isDirectory()) {
+  if (
+    inside.length === 1 &&
+    (await fs.stat(path.join(first, inside[0]))).isDirectory()
+  ) {
     const nested = path.join(first, inside[0]);
     console.log("? Found double nested folder ? Fixing...");
 
@@ -144,32 +661,39 @@ async function removeDoubleFolder(mainPath) {
 // --------------------------------------------------
 // ?? Your original META creation (unchanged)
 // --------------------------------------------------
-async function createMetaForFilesAndFoldersDetailed(folderPath, folderRelativePath = "") {
+async function createMetaForFilesAndFoldersDetailed(
+  folderPath,
+  folderRelativePath = ""
+) {
   const items = await fs.readdir(folderPath, { withFileTypes: true });
 
   const folderName = path.basename(folderPath);
-  const currentFolderPath = path.join(folderRelativePath, folderName).replace(/\\/g, "/");
+  const currentFolderPath = path
+    .join(folderRelativePath, folderName)
+    .replace(/\\/g, "/");
 
   const folderMeta = {
     name: folderName,
     path: currentFolderPath,
     updatedAt: new Date().toISOString(),
     files: [],
-    folders: []
+    folders: [],
   };
 
   for (const item of items) {
     const fullPath = path.join(folderPath, item.name);
 
     if (item.isDirectory()) {
-      const subMeta = await createMetaForFilesAndFoldersDetailed(fullPath, currentFolderPath);
+      const subMeta = await createMetaForFilesAndFoldersDetailed(
+        fullPath,
+        currentFolderPath
+      );
       folderMeta.folders.push(subMeta);
 
       await fs.writeFile(
         path.join(fullPath, `${item.name}.meta.json`),
         JSON.stringify(subMeta, null, 2)
       );
-
     } else {
       const stat = await fs.stat(fullPath);
 
@@ -182,10 +706,13 @@ async function createMetaForFilesAndFoldersDetailed(folderPath, folderRelativePa
         readOnly: false,
         readStatus: false,
         signStatus: "",
-        authStatus: ""
+        authStatus: "",
       };
 
-      await fs.writeFile(fullPath + ".meta.json", JSON.stringify(fileMeta, null, 2));
+      await fs.writeFile(
+        fullPath + ".meta.json",
+        JSON.stringify(fileMeta, null, 2)
+      );
       folderMeta.files.push(fileMeta);
     }
   }
@@ -197,7 +724,6 @@ async function createMetaForFilesAndFoldersDetailed(folderPath, folderRelativePa
 
   return folderMeta;
 }
-
 
 // ============================
 // ?? Multer Storage
@@ -211,33 +737,27 @@ const storage = multer.diskStorage({
       return cb(new Error("Folder is read-only"));
     cb(null, folderPath);
   },
-  //filename: (req, file, cb) => {
-  //  const folderPath = path.join(BASE_UPLOAD_PATH, req.query.folderPath || "");
-  //  const fullPath = path.join(folderPath, file.originalname);
-  //  if (fs.existsSync(fullPath)) return cb(new Error("File already exists"));
-  //  cb(null, file.originalname);
- // },
-filename: (req, file, cb) => {
-  const folderPath = path.join(BASE_UPLOAD_PATH, req.query.folderPath || "");
-  
-  let originalName = file.originalname;
-  let filename = originalName; 
-  let ext = path.extname(originalName);
-  let name = path.basename(originalName, ext);
 
-  let counter = 1;
-  let fullPath = path.join(folderPath, filename);
+  filename: (req, file, cb) => {
+    const folderPath = path.join(BASE_UPLOAD_PATH, req.query.folderPath || "");
 
-  // If file exists ? add (1), (2), (3)...
-  while (fs.existsSync(fullPath)) {
-    filename = `${name}(${counter})${ext}`;
-    fullPath = path.join(folderPath, filename);
-    counter++;
-  }
+    let originalName = file.originalname;
+    let filename = originalName;
+    let ext = path.extname(originalName);
+    let name = path.basename(originalName, ext);
 
-  cb(null, filename); // final safe name returned
-}
+    let counter = 1;
+    let fullPath = path.join(folderPath, filename);
 
+    // If file exists ? add (1), (2), (3)...
+    while (fs.existsSync(fullPath)) {
+      filename = `${name}(${counter})${ext}`;
+      fullPath = path.join(folderPath, filename);
+      counter++;
+    }
+
+    cb(null, filename); // final safe name returned
+  },
 });
 
 // For folder upload (multiple files)
@@ -259,105 +779,7 @@ const storageFolder = multer.diskStorage({
 // Initialize multer
 const upload = multer({ storage });
 const uploadMultiple = multer({ storage: storageFolder });
-// ============================
-// ?? File Operations
-// ============================
 
-// Single file upload
-//const handleFileUpload = [
-  //upload.array("files", 20), // ? Accept up to 20 files, or just one if single upload
- // (req, res, next) => {
-  //  try {
-   //   if (!req.files || req.files.length === 0)
-    //    return res.status(400).json({ error: "No file(s) uploaded" });
-
-     // const folderPath = path.join(
-     //   BASE_UPLOAD_PATH,
-      //  req.query.folderPath || ""
-      //);
-     // const folderMeta = readMeta(folderPath);
-     // folderMeta.files = folderMeta.files || [];
-
-    //  req.files.forEach((file) => {
-      //  const fileMeta = {
-       //   name: file.originalname,
-       //   size: file.size,
-       //   uploadedAt: new Date().toISOString(),
-       //   folder: req.query.folderPath || "",
-       //   uploadedBy: "system",
-       //   readOnly: false,
-       //   readStatus: false,
-       //   signStatus: "",
-       //   authStatus: "",
-      //  };
-
-      //  folderMeta.files.push(fileMeta);
-      //  writeMeta(folderPath, fileMeta, file.filename);
-    //  });
-
-   //   writeMeta(folderPath, folderMeta);
-    //  req.folderMeta = folderMeta;
-
-   //   next();
-   // } catch (err) {
-    //  console.error(err);
-    //  res.status(500).json({ error: "Internal Server Error" });
-  //  }
- // },
-//];
-//const handleFileUpload = [
-  //upload.array("files", 20), // Accept up to 20 files
-  //(req, res, next) => {
-  //  try {
-   //   if (!req.files || req.files.length === 0)
-    //    return res.status(400).json({ error: "No file(s) uploaded" });
-
-    //  const folderPath = path.join(BASE_UPLOAD_PATH, req.query.folderPath || "");
-    //  const folderMeta = readMeta(folderPath);
-    //  folderMeta.files = folderMeta.files || [];
-
-      // Parse selected invoices sent from frontend
-   //   let selectedInvoices = [];
-   //   if (req.body.invoices) {
-      //  try {
-      //    selectedInvoices = JSON.parse(req.body.invoices); // Array of invoice IDs
-     //   } catch (err) {
-      //    console.warn("Failed to parse invoices:", err);
-     //   }
-    //  }
-
-      // Save invoiceLock in folder metadata
-    //  folderMeta.invoiceLock = selectedInvoices;
-
-      // Add uploaded file metadata
-   //   req.files.forEach((file) => {
-     //   const fileMeta = {
-        //  name: file.originalname,
-       //   size: file.size,
-       //   uploadedAt: new Date().toISOString(),
-       //   folder: req.query.folderPath || "",
-       //   uploadedBy: "system",
-       //   readOnly: false,
-       //   readStatus: false,
-       //   signStatus: "",
-       //   authStatus: "",
-       //   invoiceLock: selectedInvoices, // optional: attach invoice IDs to each file as well
-      //  };
-
-      //  folderMeta.files.push(fileMeta);
-     //   writeMeta(folderPath, fileMeta, file.filename);
-    //  });
-
-    //  writeMeta(folderPath, folderMeta);
-    //  req.folderMeta = folderMeta;
-
-    //  next();
-   // } catch (err) {
-    //  console.error(err);
-    //  res.status(500).json({ error: "Internal Server Error" });
-   // }
-  //},
-//];
 // Load metadata JSON for a file
 function loadMetadata(documentPath) {
   const metaPath = path.join(BASE_UPLOAD_PATH, documentPath + ".meta.json");
@@ -372,106 +794,15 @@ function loadMetadata(documentPath) {
 function saveMetadata(metaPath, data) {
   fs.writeFileSync(metaPath, JSON.stringify(data, null, 2), "utf8");
 }
-const sendEmail= require("../utils/sendEmail.js");
-const clientAccount = require("../models/AccountNewModel.js")
-const User = require("../models/userModel.js")
-//const handleFileUpload = [
- // upload.array("files", 20), // Accept up to 20 files
-// async (req, res, next) => {
-  //  try {
-   //   if (!req.files || req.files.length === 0)
-    //    return res.status(400).json({ error: "No file(s) uploaded" });
-
-
-      // Get accountId sent from frontend
-  //  const accountId = req.body.accountId;
-   //   console.log("Account ID:", accountId);
-
-      // 1?? Fetch account with admin user populated
-   //   let account = null;
-
-   //   if (accountId) {
-     //   account = await clientAccount
-      //    .findById(accountId)
-      //    .populate({
-      //      path: "adminUserId",
-       //     model: "User",
-        //    select: "emailSyncEmail email username",
-        //  })  .lean(); 
-
-      //  console.log("Account:", account);
-//console.log("account.adminUserId.emailSyncEmail",account.adminUserId.emailSyncEmail)
-     // }
-
-      // 2?? Determine email to send notification to
-    //  let notifyEmail = null;
-   //   if (account?.adminUserId?.emailSyncEmail) {
-    //    notifyEmail = account.adminUserId.emailSyncEmail;
-   //   }
-    //  const folderPath = path.join(BASE_UPLOAD_PATH, req.query.folderPath || "");
-    //  const folderMeta = readMeta(folderPath);
-    //  folderMeta.files = folderMeta.files || [];
-
-      // Parse selected invoices sent from frontend
-    //  let selectedInvoices = [];
-    //  if (req.body.invoices) {
-     //   try {
-     //     selectedInvoices = JSON.parse(req.body.invoices); // Array of invoice IDs
-      //  } catch (err) {
-      //    console.warn("Failed to parse invoices:", err);
-     //   }
-    //  }
-
-    //  folderMeta.invoiceLock = selectedInvoices;
-
-
-      // Save uploaded files and create InvoiceLock entries
-   //   for (const file of req.files) {
-      //  const fileMeta = {
-       //   name: file.originalname,
-       //   size: file.size,
-       //   uploadedAt: new Date().toISOString(),
-       //   folder: req.query.folderPath || "",
-        //  uploadedBy: "system",
-       //   readOnly: false,
-       //   readStatus: false,
-       //  signStatus: "",
-       //   authStatus: "",
-         // invoiceLock: selectedInvoices,
-//lockInvoiceStatus: selectedInvoices.length > 0 ? "pendingpayment" : "",
-       // };
-
-        // Push file metadata to folder
-      //  folderMeta.files.push(fileMeta);
-      //  writeMeta(folderPath, fileMeta, file.filename);
-
-        //Insert invoice lock records
-      //  for (const invoiceId of selectedInvoices) {
-      //    const docPath = path.join(req.query.folderPath || "", file.filename);
-       //  const lock = new InvoiceLock({
-         //   invoiceId,
-          //  documentPath: docPath,
-//status: "pendingpayment",
-        //  });
-         // await lock.save(); // save each lock in DB
-       // }
-     // }
-
-     // writeMeta(folderPath, folderMeta);
-    //  req.folderMeta = folderMeta;
-     //   next();
-   // } catch (err) {
-   // console.error(err);
-   //  res.status(500).json({ error: "Internal Server Error" });
-  // }
- // },
-//];
+const sendEmail = require("../utils/sendEmail.js");
+const clientAccount = require("../models/AccountNewModel.js");
+const User = require("../models/userModel.js");
 
 const nodemailer = require("nodemailer");
-require('dotenv').config();
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+require("dotenv").config();
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const handleFileUpload = [
- upload.array("files", 20), // Accept up to 20 files
+  upload.array("files", 20), // Accept up to 20 files
 
   async (req, res, next) => {
     try {
@@ -508,7 +839,10 @@ const handleFileUpload = [
         notifyEmail = account.adminUserId.emailSyncEmail;
       }
 
-      const folderPath = path.join(BASE_UPLOAD_PATH, req.query.folderPath || "");
+      const folderPath = path.join(
+        BASE_UPLOAD_PATH,
+        req.query.folderPath || ""
+      );
       const folderMeta = readMeta(folderPath);
       folderMeta.files = folderMeta.files || [];
 
@@ -537,7 +871,8 @@ const handleFileUpload = [
           signStatus: "",
           authStatus: "",
           invoiceLock: selectedInvoices,
-          lockInvoiceStatus: selectedInvoices.length > 0 ? "pendingpayment" : "",
+          lockInvoiceStatus:
+            selectedInvoices.length > 0 ? "pendingpayment" : "",
         };
 
         // Push file metadata to folder
@@ -561,37 +896,40 @@ const handleFileUpload = [
       req.folderMeta = folderMeta;
 
       // 3?? Send email notification using Nodemailer
-     if (notifyEmail) {
-
-//console.log("notifyEmail",notifyEmail)
-       //  Configure transporter
+      if (notifyEmail) {
+        //console.log("notifyEmail",notifyEmail)
+        //  Configure transporter
         const transporter = nodemailer.createTransport({
           service: "gmail",
-        auth: {
-         user: process.env.EMAIL,
-          pass: process.env.EMAIL_PASSWORD,
-       },
-        tls: {
-         rejectUnauthorized: false // Only for development
-        },  logger: true,
-          debug: true
+          auth: {
+            user: process.env.EMAIL,
+            pass: process.env.EMAIL_PASSWORD,
+          },
+          tls: {
+            rejectUnauthorized: false, // Only for development
+          },
+          logger: true,
+          debug: true,
         });
-//transporter.on('log', console.log)
-const uploadedFileNames = req.files.map(f => f.originalname).join(", ");
+        //transporter.on('log', console.log)
+        const uploadedFileNames = req.files
+          .map((f) => f.originalname)
+          .join(", ");
 
         // Prepare email
         const mailOptions = {
           from: `"SNP Taxes" <${process.env.SMTP_USER}>`,
           to: notifyEmail,
           subject: "#New Document Uploaded",
-          text: `Hello ${account.adminUserId.username || "User"},\n\n` +
-                `${req.files.length} file(s) have been uploaded ".\n\n` +
-               `Please check your account for details.\n\nThank you.`,
+          text:
+            `Hello ${account.adminUserId.username || "User"},\n\n` +
+            `${req.files.length} file(s) have been uploaded ".\n\n` +
+            `Please check your account for details.\n\nThank you.`,
           html: `<p>Hello ${account.adminUserId.username || "User"},</p>
               <p><strong>Account Name:</strong> ${account.accountName}</p>
         <p><strong>File Name:</strong> ${uploadedFileNames}</p>
                  <p>Thank you.</p>`,
-       };
+        };
 
         // Send email
         await transporter.sendMail(mailOptions);
@@ -600,21 +938,16 @@ const uploadedFileNames = req.files.map(f => f.originalname).join(", ");
 
       next();
 
-//return res.status(200).json({
-        //  message: "mail send",
+      //return res.status(200).json({
+      //  message: "mail send",
 
-     // })
-
+      // })
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
 ];
-
-
-
-
 
 // Folder upload
 const handleFolderUpload = [
@@ -833,7 +1166,7 @@ const moveItem = async (req, res) => {
         fileMeta.updatedAt = new Date().toISOString();
         writeMeta(destParent, fileMeta, fileName);
       } else {
-        // If no meta file existed � create one
+        // If no meta file existed � create one
         const stats = fs.statSync(targetPath);
         const newFileMeta = {
           name: fileName,
@@ -968,71 +1301,7 @@ const renameItem = async (req, res) => {
   }
 };
 
-// ============================
-// ?? Update File/Folder Status (readStatus, signStatus, authStatus)
-// ============================
-//const updateStatus = (req, res) => {
- // try {
-  //  const { targetPath, status } = req.body;
-    // status should be an object like { readStatus: true, signStatus: false, authStatus: true }
-   // if (!targetPath || !status)
-     // return res.status(400).json({ error: "targetPath and status required" });
 
-   // const fullPath = path.join(BASE_UPLOAD_PATH, targetPath);
-  //  if (!fs.existsSync(fullPath))
-     // return res.status(404).json({ error: "File or folder not found" });
-
-   // const isDirectory = fs.lstatSync(fullPath).isDirectory();
-
-  //  const updateMetaRecursive = (dir) => {
-      // Update folder meta
-    //  const folderMeta = readMeta(dir);
-     // Object.assign(folderMeta, status);
-     // folderMeta.updatedAt = new Date().toISOString();
-    //  writeMeta(dir, folderMeta);
-
-      // Update child files/folders
-    //  const entries = fs.readdirSync(dir);
-    //  for (const entry of entries) {
-     //   const entryPath = path.join(dir, entry);
-      //  if (fs.lstatSync(entryPath).isDirectory()) {
-       //   updateMetaRecursive(entryPath);
-     //   } else {
-        //  const fileMeta = readMeta(dir, entry);
-        //  if (Object.keys(fileMeta).length) {
-          //  Object.assign(fileMeta, status);
-          //  fileMeta.updatedAt = new Date().toISOString();
-           // writeMeta(dir, fileMeta, entry);
-          //}
-       // }
-      //}
-   // };
-
-   // if (isDirectory) {
-   //  updateMetaRecursive(fullPath);
-  //  } else {
-      // Single file
-    //  const parentDir = path.dirname(fullPath);
-    //  const fileName = path.basename(fullPath);
-    //  const fileMeta = readMeta(parentDir, fileName);
-   //   if (Object.keys(fileMeta).length) {
-      //  Object.assign(fileMeta, status);
-      //  fileMeta.updatedAt = new Date().toISOString();
-       // writeMeta(parentDir, fileMeta, fileName);
-     // }
-   // }
-
-   // res.json({
-    //  message: `${isDirectory ? "Folder" : "File"} status updated successfully`,
-    //  status,
-   // });
- // } catch (err) {
-  //  console.error("Error updating status:", err);
-   // res
-    //  .status(500)
-    //  .json({ error: "Failed to update status", details: err.message });
- // }
-//};
 
 const updateStatus = (req, res) => {
   try {
@@ -1048,7 +1317,7 @@ const updateStatus = (req, res) => {
     const isDirectory = fs.lstatSync(fullPath).isDirectory();
 
     const applyMetaUpdate = (meta) => {
-      Object.assign(meta, status);            // <--- add all fields from status
+      Object.assign(meta, status); // <--- add all fields from status
       meta.updatedAt = new Date().toISOString();
       return meta;
     };
@@ -1090,15 +1359,13 @@ const updateStatus = (req, res) => {
 
     res.json({
       message: `${isDirectory ? "Folder" : "File"} status updated successfully`,
-      status
+      status,
     });
-
   } catch (err) {
     console.error("Error updating status:", err);
     res.status(500).json({ error: "Failed to update status" });
   }
 };
-
 
 module.exports = { updateStatus };
 
@@ -1153,80 +1420,16 @@ const setFileReadOnly = (req, res) => {
   }
 };
 
-/**
- * ??? Delete File or Folder (Universal)
- * Handles both files and folders + associated .meta.json
- */
-//const deleteItem = (req, res) => {
-//  try {
-  //  const { targetPath } = req.body;
-  //  if (!targetPath)
-   //   return res
-    //    .status(400)
-     //   .json({ success: false, message: "targetPath required" });
 
-  //  const fullPath = path.join(BASE_UPLOAD_PATH, targetPath);
-
- //   if (!fs.existsSync(fullPath)) {
-  //    return res
-   //     .status(404)
-   //     .json({ success: false, message: "File or folder not found" });
-   // }
-
-  //  const stats = fs.statSync(fullPath);
-
-    // ================
-    // 1?? DELETE FILE/FOLDER
-    // ================
-  //  if (stats.isDirectory()) {
-   //   fs.rmSync(fullPath, { recursive: true, force: true });
-
-      // Delete folder metadata file if exists
-   //   const folderMetaPath = path.join(
-    //    path.dirname(fullPath),
-    //    `${path.basename(fullPath)}.meta.json`
-    //  );
-   //   if (fs.existsSync(folderMetaPath)) fs.unlinkSync(folderMetaPath);
-
-      // Remove this folder from parent metadata
-   //   removeFromParentMetadata(fullPath);
-
-    //  return res.json({
-     //   success: true,
-      //  message: "Folder and metadata deleted successfully",
-    //  });
-   // } else {
-   //   fs.unlinkSync(fullPath);
-
-      // Delete file metadata file if exists
-    //  const metaFilePath = path.join(
-     //   path.dirname(fullPath),
-      //  `${path.basename(fullPath)}.meta.json`
-    //  );
-     // if (fs.existsSync(metaFilePath)) fs.unlinkSync(metaFilePath);
-
-      // Remove file from parent metadata
-    //  removeFromParentMetadata(fullPath);
-
-    //  return res.json({
-      //  success: true,
-      //  message: "File and metadata deleted successfully",
-    //  });
-   // }
- // } catch (err) {
-  //  console.error("? Error in deleteItem:", err);
-  //  return res
-   //   .status(500)
-    //  .json({ success: false, message: "Internal Server Error" });
- // }
-//};
 
 // DELETE FILE / FOLDER
 const deleteItem = async (req, res) => {
   try {
     const { targetPath } = req.body;
     if (!targetPath)
-      return res.status(400).json({ success: false, message: "targetPath required" });
+      return res
+        .status(400)
+        .json({ success: false, message: "targetPath required" });
 
     const fullPath = path.join(BASE_UPLOAD_PATH, targetPath);
 
@@ -1304,31 +1507,34 @@ async function deleteLinkedDBRecords(meta) {
       console.log("??? Deleted Esign Request:", meta.esignRequestId);
     }
 
-    // Delete approval request  
+    // Delete approval request
     if (meta.approvalId) {
       await Approvals.findByIdAndDelete(meta.approvalId);
       console.log("??? Deleted Approval:", meta.approvalId);
     }
 
-  // ?? Delete InvoiceLock using invoiceId stored in invoiceLock array
+    // ?? Delete InvoiceLock using invoiceId stored in invoiceLock array
     if (meta.invoiceLock) {
       if (Array.isArray(meta.invoiceLock)) {
         for (const invoiceId of meta.invoiceLock) {
           const result = await InvoiceLock.deleteMany({ invoiceId });
-          console.log(`??? Deleted InvoiceLock for invoiceId ${invoiceId}`, result);
+          console.log(
+            `??? Deleted InvoiceLock for invoiceId ${invoiceId}`,
+            result
+          );
         }
       } else {
         // If accidentally stored as single string
         await InvoiceLock.deleteMany({ invoiceId: meta.invoiceLock });
-        console.log(`??? Deleted InvoiceLock for invoiceId ${meta.invoiceLock}`);
+        console.log(
+          `??? Deleted InvoiceLock for invoiceId ${meta.invoiceLock}`
+        );
       }
     }
-
   } catch (err) {
     console.error("? Error deleting linked DB records:", err);
   }
 }
-
 
 // ========================
 // ?? Helper: Remove from Parent Metadata
@@ -1344,9 +1550,7 @@ function removeFromParentMetadata(fullPath) {
 
       // remove from "files" if it's there
       if (metaData.files && Array.isArray(metaData.files)) {
-        const updatedFiles = metaData.files.filter(
-          (f) => f.name !== baseName
-        );
+        const updatedFiles = metaData.files.filter((f) => f.name !== baseName);
         metaData.files = updatedFiles;
       }
 
@@ -1545,8 +1749,8 @@ const clientListFoldersAndFiles = (req, res) => {
     const structure = readRecursive(folderPath);
 
     res.json({
-message:"data retrive successfully"
-,      folder: req.query.folderPath || "/",
+      message: "data retrive successfully",
+      folder: req.query.folderPath || "/",
       contents: structure,
     });
   } catch (err) {
@@ -1558,7 +1762,7 @@ const lockUnlockInvoice = async (req, res) => {
   try {
     const { filePath, invoiceIds, action } = req.body;
     // action = "lock" OR "unlock"
-    console.log("request body",req.body)
+    console.log("request body", req.body);
     if (!filePath || !action)
       return res.status(400).json({ error: "filePath & action are required" });
 
@@ -1573,31 +1777,34 @@ const lockUnlockInvoice = async (req, res) => {
     if (!fileMeta || Object.keys(fileMeta).length === 0)
       return res.status(400).json({ error: "Metadata not found" });
 
-   /** =====================  UNLOCK INVOICE  ===================== **/
-if (action === "unlock") {
-  if (!invoiceIds || !Array.isArray(invoiceIds))
-    return res.status(400).json({ error: "invoiceIds array required for unlock" });
+    /** =====================  UNLOCK INVOICE  ===================== **/
+    if (action === "unlock") {
+      if (!invoiceIds || !Array.isArray(invoiceIds))
+        return res
+          .status(400)
+          .json({ error: "invoiceIds array required for unlock" });
 
-  fileMeta.invoiceLock = [];
-  fileMeta.lockInvoiceStatus = "";
-  fileMeta.updatedAt = new Date().toISOString();
+      fileMeta.invoiceLock = [];
+      fileMeta.lockInvoiceStatus = "";
+      fileMeta.updatedAt = new Date().toISOString();
 
-  writeMeta(parentDir, fileMeta, fileName);
+      writeMeta(parentDir, fileMeta, fileName);
 
-  // Delete invoice lock records using invoiceIds
-  await InvoiceLock.deleteMany({
-    invoiceId: { $in: invoiceIds },
-    documentPath: filePath
-  });
+      // Delete invoice lock records using invoiceIds
+      await InvoiceLock.deleteMany({
+        invoiceId: { $in: invoiceIds },
+        documentPath: filePath,
+      });
 
-  return res.json({ message: "Invoice unlocked successfully", fileMeta });
-}
-
+      return res.json({ message: "Invoice unlocked successfully", fileMeta });
+    }
 
     /** =====================  LOCK INVOICE  ===================== **/
     if (action === "lock") {
       if (!invoiceIds || !Array.isArray(invoiceIds))
-        return res.status(400).json({ error: "invoiceIds array required for lock" });
+        return res
+          .status(400)
+          .json({ error: "invoiceIds array required for lock" });
 
       fileMeta.invoiceLock = invoiceIds;
       fileMeta.lockInvoiceStatus = "pendingpayment";
@@ -1607,7 +1814,10 @@ if (action === "unlock") {
 
       // Create DB invoice lock entries
       for (const invoiceId of invoiceIds) {
-        const exist = await InvoiceLock.findOne({ invoiceId, documentPath: filePath });
+        const exist = await InvoiceLock.findOne({
+          invoiceId,
+          documentPath: filePath,
+        });
         if (!exist) {
           await InvoiceLock.create({
             invoiceId,
@@ -1620,21 +1830,29 @@ if (action === "unlock") {
       return res.json({ message: "Invoice locked successfully", fileMeta });
     }
 
-    return res.status(400).json({ error: "Invalid action (use 'lock' or 'unlock')" });
-
+    return res
+      .status(400)
+      .json({ error: "Invalid action (use 'lock' or 'unlock')" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Server error" });
   }
 };
 
-const sendApprovalEmail = require('../utils/sendApprovalEmail');
+const sendApprovalEmail = require("../utils/sendApprovalEmail");
 
 const toggleApprovalStatus = async (req, res) => {
   try {
-    const { 
-      filePath, action, accountId, fileUrl, filename, clientEmail, 
-      approvalId, declineReason ,description
+    const {
+      filePath,
+      action,
+      accountId,
+      fileUrl,
+      filename,
+      clientEmail,
+      approvalId,
+      declineReason,
+      description,
     } = req.body;
 
     if (!filePath || !action)
@@ -1647,38 +1865,39 @@ const toggleApprovalStatus = async (req, res) => {
     const parentDir = path.dirname(fullPath);
     const fileName = path.basename(fullPath);
     let fileMeta = readMeta(parentDir, fileName);
-    if (!fileMeta) return res.status(400).json({ error: "File metadata not found" });
- 
+    if (!fileMeta)
+      return res.status(400).json({ error: "File metadata not found" });
+
     /* ========== SEND ========== */
     if (action === "send") {
       if (!accountId || !fileUrl || !filename || !clientEmail)
         return res.status(400).json({ error: "required fields missing" });
-console.log(`?? Sending approval for ${filename} to ${clientEmail}`);
+      console.log(`?? Sending approval for ${filename} to ${clientEmail}`);
       const newApproval = await Approvals.create({
         accountId,
         filename,
         fileUrl,
         clientEmail,
         status: "pending",
-description:description
+        description: description,
       });
-console.log("newapproval",newApproval)
+      console.log("newapproval", newApproval);
       fileMeta.authStatus = "pendingApproval";
       fileMeta.approvalId = newApproval._id;
       fileMeta.updatedAt = new Date().toISOString();
       writeMeta(parentDir, fileMeta, fileName);
 
-  
       // 4. IMMEDIATE SUCCESS RESPONSE
-      return res.json({ 
-        message: "Approval sent successfully & email queued", 
+      return res.json({
+        message: "Approval sent successfully & email queued",
         fileMeta,
-        approvalId: newApproval._id
+        approvalId: newApproval._id,
       });
     }
     /* ========== CANCEL (Manual Cancel) ========== */
     if (action === "cancel") {
-      if (!approvalId) return res.status(400).json({ error: "approvalId required" });
+      if (!approvalId)
+        return res.status(400).json({ error: "approvalId required" });
 
       await Approvals.findByIdAndUpdate(approvalId, { status: "cancelled" });
 
@@ -1693,7 +1912,8 @@ console.log("newapproval",newApproval)
 
     /* ========== APPROVE ========== */
     if (action === "approve") {
-      if (!approvalId) return res.status(400).json({ error: "approvalId required" });
+      if (!approvalId)
+        return res.status(400).json({ error: "approvalId required" });
 
       await Approvals.findByIdAndUpdate(approvalId, { status: "approved" });
 
@@ -1706,7 +1926,8 @@ console.log("newapproval",newApproval)
 
     /* ========== DECLINE (New Feature) ========== */
     if (action === "decline") {
-      if (!approvalId) return res.status(400).json({ error: "approvalId required" });
+      if (!approvalId)
+        return res.status(400).json({ error: "approvalId required" });
       if (!declineReason)
         return res.status(400).json({ error: "declineReason required" });
 
@@ -1720,18 +1941,159 @@ console.log("newapproval",newApproval)
       fileMeta.updatedAt = new Date().toISOString();
       writeMeta(parentDir, fileMeta, fileName);
 
-      return res.json({ message: "Approval declined & reason saved", fileMeta });
+      return res.json({
+        message: "Approval declined & reason saved",
+        fileMeta,
+      });
     }
 
     return res.status(400).json({ error: "Invalid action" });
-
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
 };
 
+const createFolderMetaIfNotExists = async (folderPath, relativePath) => {
+  const folderName = path.basename(folderPath);
+  const metaPath = path.join(folderPath, `${folderName}.meta.json`);
 
+  if (await fs.pathExists(metaPath)) return;
 
+  const meta = {
+    type: "folder",
+    name: folderName,
+    relativePath,
+    createdAt: new Date().toISOString(),
+  };
+
+  await fs.writeJson(metaPath, meta, { spaces: 2 });
+};
+
+const createFileMeta = async (filePath, file, relativePath) => {
+  const metaPath = `${filePath}.meta.json`;
+
+  const meta = {
+    type: "file",
+    name: file.originalname,
+    relativePath,
+    size: file.size,
+    extension: path.extname(file.originalname),
+    uploadedAt: new Date().toISOString(),
+  };
+
+  await fs.writeJson(metaPath, meta, { spaces: 2 });
+};
+
+// const uploadFolderRaw = async (req, res) => {
+//   try {
+//     const { accountId } = req.body;
+//     const files = req.files;
+
+//     const paths = Array.isArray(req.body.paths)
+//       ? req.body.paths
+//       : [req.body.paths];
+
+//     if (!accountId || !files?.length) {
+//       return res.status(400).json({ error: "Invalid request" });
+//     }
+
+//     const basePath = path.join(
+//       __dirname,
+//       "../uploads/accounts",
+//       accountId
+//     );
+
+//     for (let i = 0; i < files.length; i++) {
+//       const file = files[i];
+//       const relativePath = paths[i]; // GST/gst.pdf
+
+//       const destPath = path.join(basePath, relativePath);
+//       const folderPath = path.dirname(destPath);
+//       const folderRelativePath = path.dirname(relativePath);
+
+//       // 1️⃣ Ensure folder exists
+//       await fs.ensureDir(folderPath);
+
+//       // 2️⃣ Create folder metadata (ONCE)
+//       await createFolderMetaIfNotExists(
+//         folderPath,
+//         folderRelativePath
+//       );
+
+//       // 3️⃣ Write file
+//       await fs.writeFile(destPath, file.buffer);
+
+//       // 4️⃣ Create file metadata
+//       await createFileMeta(destPath, file, relativePath);
+//     }
+
+//     return res.json({
+//       success: true,
+//       message: "Files & metadata created successfully",
+//     });
+//   } catch (err) {
+//     console.error("UPLOAD ERROR:", err);
+//     return res.status(500).json({ error: "Upload failed" });
+//   }
+// };
+
+const uploadFolderRaw = async (req, res) => {
+  try {
+    const { accountId } = req.body;
+    const files = req.files;
+    const paths = Array.isArray(req.body.paths)
+      ? req.body.paths
+      : [req.body.paths];
+
+    const basePath = path.join(__dirname, "../uploads/accounts", accountId);
+
+    for (let i = 0; i < files.length; i++) {
+      const relativePath = paths[i]; // clean path from frontend
+      const destPath = path.join(basePath, relativePath);
+
+      // ✅ Ensure folder exists
+      await fs.ensureDir(path.dirname(destPath));
+
+      // ✅ Write file
+      await fs.writeFile(destPath, files[i].buffer);
+
+      // ✅ Create file meta
+      const fileMeta = {
+        name: files[i].originalname,
+        size: files[i].size,
+        type: files[i].mimetype,
+        uploadedAt: new Date().toISOString(),
+      };
+      const fileMetaPath = destPath + ".meta.json"; // filename.meta.json
+      await fs.writeJSON(fileMetaPath, fileMeta, { spaces: 2 });
+
+      // ✅ Create folder meta for each folder in path
+      const parts = relativePath.split("/");
+      let currentPath = basePath;
+      for (let j = 0; j < parts.length - 1; j++) {
+        currentPath = path.join(currentPath, parts[j]);
+        const folderMetaPath = path.join(
+          currentPath,
+          parts[j] + ".meta.json" // foldername.meta.json
+        );
+
+        if (!(await fs.pathExists(folderMetaPath))) {
+          const folderMeta = {
+            name: parts[j],
+            type: "folder",
+            createdAt: new Date().toISOString(),
+          };
+          await fs.writeJSON(folderMetaPath, folderMeta, { spaces: 2 });
+        }
+      }
+    }
+
+    res.json({ success: true, message: "Files and meta uploaded" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Upload failed" });
+  }
+};
 // ============================
 // ?? Exports
 // ============================
@@ -1763,6 +2125,12 @@ module.exports = {
   setFileReadOnly,
   moveItem,
   renameItem,
-  updateStatus,clientListFoldersAndFiles,  loadMetadata,
-  saveMetadata,lockUnlockInvoice ,toggleApprovalStatus,uploadFolderZipFplder,uploadFolder
+  updateStatus,
+  clientListFoldersAndFiles,
+  loadMetadata,
+  saveMetadata,
+  lockUnlockInvoice,
+  toggleApprovalStatus,
+  uploadFolderZipFplder,mergeUnzippedFolderToTarget,
+  uploadFolder,uploadFolderRaw
 };

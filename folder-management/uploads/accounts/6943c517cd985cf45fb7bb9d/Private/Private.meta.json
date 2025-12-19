@@ -1,0 +1,62 @@
+{
+  "name": "Private",
+  "path": "6943c517cd985cf45fb7bb9d/Private",
+  "updatedAt": "2025-12-19T12:04:11.291Z",
+  "files": [],
+  "folders": [
+    {
+      "name": "2018",
+      "path": "6943c517cd985cf45fb7bb9d/Private/2018",
+      "updatedAt": "2025-12-19T12:04:11.291Z",
+      "files": [
+        {
+          "name": "test.txt",
+          "size": 0,
+          "uploadedAt": "2025-12-19T12:04:11.292Z",
+          "folder": "6943c517cd985cf45fb7bb9d/Private/2018",
+          "uploadedBy": "system",
+          "readOnly": false,
+          "readStatus": false,
+          "signStatus": "",
+          "authStatus": ""
+        }
+      ],
+      "folders": []
+    },
+    {
+      "name": "2019",
+      "path": "6943c517cd985cf45fb7bb9d/Private/2019",
+      "updatedAt": "2025-12-19T12:04:11.293Z",
+      "files": [],
+      "folders": []
+    },
+    {
+      "name": "2020",
+      "path": "6943c517cd985cf45fb7bb9d/Private/2020",
+      "updatedAt": "2025-12-19T12:04:11.294Z",
+      "files": [],
+      "folders": []
+    },
+    {
+      "name": "2021",
+      "path": "6943c517cd985cf45fb7bb9d/Private/2021",
+      "updatedAt": "2025-12-19T12:04:11.295Z",
+      "files": [],
+      "folders": []
+    },
+    {
+      "name": "2022",
+      "path": "6943c517cd985cf45fb7bb9d/Private/2022",
+      "updatedAt": "2025-12-19T12:04:11.297Z",
+      "files": [],
+      "folders": []
+    },
+    {
+      "name": "2023",
+      "path": "6943c517cd985cf45fb7bb9d/Private/2023",
+      "updatedAt": "2025-12-19T12:04:11.298Z",
+      "files": [],
+      "folders": []
+    }
+  ]
+}

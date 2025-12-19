@@ -53,7 +53,7 @@ exports.getAccounts = async (req, res) => {
   }
 };
 require('../models/tagModel')
-
+require('../models/userModel')
 
 // Get accounts list by active/archive status
 exports.getAccountsList = async (req, res) => {
@@ -821,3 +821,88 @@ exports.getAccountNamesWithEmails = async (req, res) => {
   }
 };
 
+const normalizeClientType = (value) => {
+  if (!value) return null;
+
+  const v = value.toString().trim().toLowerCase();
+
+  switch (v) {
+    case "company":
+      return "Company";
+    case "individual":
+      return "Individual";
+    default:
+      return null;
+  }
+};
+const { createAccountFolders } = require("../utils/accountFolderHelper");
+exports.createAccountFromCSV = async (req, res) => {
+  try {
+    const {
+      id,
+      accountName,
+      accountType, // from table
+      linkedContacts, // array of names
+      tags = [],
+      adminUserId,
+    } = req.body;
+
+    // 🔴 Validation
+    if (!accountName || !accountType) {
+      return res.status(400).json({
+        message: "Account Name and Account Type are required",
+      });
+    }
+    const clientType = normalizeClientType(accountType);
+
+    if (!clientType) {
+      return res.status(400).json({
+        message: `Invalid Account Type: ${accountType}`,
+      });
+    }
+    // 🔴 Check duplicate account
+    const existingAccount = await Account.findOne({ accountName });
+    if (existingAccount) {
+      return res.status(409).json({
+        message: "Account already exists",
+      });
+    }
+
+    // 🔍 Find contacts by contactName
+    const contactDocs = await ClientContact.find({
+      contactName: { $in: linkedContacts.filter(Boolean) },
+    });
+
+    // 🔗 Prepare contacts array (schema-safe)
+    const contacts = contactDocs.map((c) => ({
+      contact: c._id,
+      canLogin: false,
+      canNotify: false,
+      canEmailSync: false,
+    }));
+
+    // 🏗 Create account
+    const account = new Account({
+    importId: id, 
+      accountName,
+      clientType, // 🔥 mapping
+      contacts, // 🔥 correct schema
+      tags,
+      adminUserId,
+    });
+
+    await account.save();
+// 📁 Create account folders
+createAccountFolders(account._id.toString(), adminUserId);
+    return res.status(201).json({
+      message: "Account created successfully",
+      account,
+    });
+  } catch (error) {
+    console.error("Account CSV Import Error:", error);
+    return res.status(500).json({
+      message: "Error creating account",
+      error: error.message,
+    });
+  }
+};

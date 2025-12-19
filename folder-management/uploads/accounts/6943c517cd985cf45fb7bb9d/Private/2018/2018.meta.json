@@ -1,0 +1,19 @@
+{
+  "name": "2018",
+  "path": "6943c517cd985cf45fb7bb9d/Private/2018",
+  "updatedAt": "2025-12-19T12:04:11.291Z",
+  "files": [
+    {
+      "name": "test.txt",
+      "size": 0,
+      "uploadedAt": "2025-12-19T12:04:11.292Z",
+      "folder": "6943c517cd985cf45fb7bb9d/Private/2018",
+      "uploadedBy": "system",
+      "readOnly": false,
+      "readStatus": false,
+      "signStatus": "",
+      "authStatus": ""
+    }
+  ],
+  "folders": []
+}

@@ -6,7 +6,7 @@ const { generateActivationToken, generateExpiryDate } = require('../utils/tokenG
 const contactSchema = new Schema({
   firstName: { type: String, required: true },
   middleName: { type: String },
-  lastName: { type: String, required: true },
+  lastName: { type: String, },
   email: { type: String, unique: true, required: true },
 contactName:{type: String},
 companyName: {
@@ -72,21 +72,22 @@ tags: [
 }, { timestamps: true }
 );
 
+
 // Password hash middleware
 // contactSchema.pre('save', async function(next) {
+//   if (!this.password) return next();
 //   if (!this.isModified('password')) return next();
+  
 //   const salt = await bcrypt.genSalt(10);
 //   this.password = await bcrypt.hash(this.password, salt);
 //   next();
 // });
-// Password hash middleware
-contactSchema.pre('save', async function(next) {
-  if (!this.password) return next();
-  if (!this.isModified('password')) return next();
-  
+contactSchema.pre("save", async function () {
+  if (!this.password) return;
+  if (!this.isModified("password")) return;
+
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-  next();
 });
 // Method to generate activation token
 contactSchema.methods.generateActivationToken = function() {
