@@ -657,6 +657,17 @@ async function removeDoubleFolder(mainPath) {
     console.log("? Fixed double folder structure");
   }
 }
+function formatUploadedDate(date = new Date()) {
+  return date
+    .toLocaleDateString("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    })
+    .replace(/,/g, "")
+    .toUpperCase()
+    .replace(" ", "-");
+}
 
 // --------------------------------------------------
 // ?? Your original META creation (unchanged)
@@ -700,7 +711,7 @@ async function createMetaForFilesAndFoldersDetailed(
       const fileMeta = {
         name: item.name,
         size: stat.size,
-        uploadedAt: new Date().toISOString(),
+        uploadedAt: formatUploadedDate,
         folder: currentFolderPath,
         uploadedBy: "system",
         readOnly: false,

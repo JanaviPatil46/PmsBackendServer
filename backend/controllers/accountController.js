@@ -72,6 +72,28 @@ exports.getAccountsList = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+// Get accounts which have ONLY "Imported Account" & "Incomplete Data" tags
+exports.getAccountsWithImportedAndIncompleteTags = async (req, res) => {
+  try {
+    const importedTagId = "69425a8af7dd56fe66fd8538";
+    const incompleteTagId = "69425aacf7dd56fe66fd853a";
+
+    const accounts = await Account.find({
+      tags: {
+        $all: [importedTagId, incompleteTagId], // must contain both
+        $size: 2 // must contain ONLY these two
+      }
+    })
+      .populate("contacts.contact", "email")
+      .populate("tags", "tagName tagColour")
+      .populate("teamMember", "username")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({ accountlist: accounts });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 // ? Get accounts assigned to a specific team member
 exports.getAccountsByTeamMember = async (req, res) => {
   try {

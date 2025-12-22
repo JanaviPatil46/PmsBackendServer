@@ -1,0 +1,722 @@
+{
+  "name": "6949051a50d1d81d36be5cd0",
+  "path": "6949051a50d1d81d36be5cd0",
+  "updatedAt": "2025-12-22T08:45:40.827Z",
+  "files": [
+    {
+      "name": "6949051a50d1d81d36be5cd0.meta.json",
+      "size": 234,
+      "folder": "6949051a50d1d81d36be5cd0",
+      "uploadedBy": "system",
+      "readOnly": false,
+      "readStatus": false,
+      "signStatus": "",
+      "authStatus": ""
+    }
+  ],
+  "folders": [
+    {
+      "name": "blank",
+      "path": "6949051a50d1d81d36be5cd0/blank",
+      "updatedAt": "2025-12-22T08:45:40.830Z",
+      "files": [],
+      "folders": []
+    },
+    {
+      "name": "Client Uploaded Documents",
+      "path": "6949051a50d1d81d36be5cd0/Client Uploaded Documents",
+      "updatedAt": "2025-12-22T08:45:40.831Z",
+      "files": [],
+      "folders": [
+        {
+          "name": "2018",
+          "path": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2018",
+          "updatedAt": "2025-12-22T08:45:40.832Z",
+          "files": [
+            {
+              "name": "Gift Deed - all.pdf",
+              "size": 2766285,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2018",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "India property.xlsx",
+              "size": 16637,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2018",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "New Doc 2020-03-02 18.07.27.pdf.pdf",
+              "size": 541596,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2018",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "tax plot 34.pdf",
+              "size": 414024,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2018",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": []
+        },
+        {
+          "name": "2019",
+          "path": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2019",
+          "updatedAt": "2025-12-22T08:45:40.837Z",
+          "files": [],
+          "folders": []
+        },
+        {
+          "name": "2020",
+          "path": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+          "updatedAt": "2025-12-22T08:45:40.838Z",
+          "files": [
+            {
+              "name": "2019_FBAR_FATCA_Checklist.xlsx",
+              "size": 61385,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020 - Form 8886 - CASPER GROVE PARTNERS, LLC - ASHISH ALUWALIA & GOWRI KAMARTHY - 7706.pdf",
+              "size": 187120,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020 Form 3922 Transfer of Stock Acquired Through an Employee Stock Purchase Plan Under Section 423(c).pdf",
+              "size": 382301,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020 K-1 CASPER GROVE PARTNERS, LLC 7 Aluwalia & Gowri Kamarthy, Ashish.pdf",
+              "size": 163799,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020-Individual---TOD-X65264482-Consolidated-Form-1099.pdf",
+              "size": 54650,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020-INDIVIDUAL-Core-Z04500102-Consolidated-Form-1099.pdf",
+              "size": 46485,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020-INDIVIDUAL-Satellite-Z04504823-Consolidated-Form-1099.pdf",
+              "size": 41253,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020-ROTH-IRA-197883506-Form-5498.pdf",
+              "size": 11286,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020-Traditional-IRA-197851647-Form-1099-R-&-Instructions.pdf",
+              "size": 28302,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020-Traditional-IRA-197851647-Form-5498.pdf",
+              "size": 10272,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020_FBAR_FATCA_Checklist.xlsx",
+              "size": 105582,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020_Rental-Property-Details.xlsx",
+              "size": 113493,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "34Golf-MortgageInt-2020.pdf",
+              "size": 117138,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Ashish-1095C-2020.jpeg",
+              "size": 869430,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Ashish-1099-SA-2020.jpeg",
+              "size": 1463320,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Ashish-2020-Individual-X91497472-Consolidated-Form-1099.pdf",
+              "size": 41191,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Ashish-2020-Rollover-IRA-215840691-Form-5498.pdf",
+              "size": 11144,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Ashish-Form3922-2020.jpeg",
+              "size": 793745,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "ASHISH-IRS-INTEREST Income.jpeg",
+              "size": 447993,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Ashish-StateIncomeTaxRefund.jpeg",
+              "size": 517173,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "ASHISH-W2.jpeg",
+              "size": 1779799,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Austin-MortgageInterest-2020.pdf",
+              "size": 156600,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "BOA-InterestIncome-2020.pdf",
+              "size": 20458,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "California-1099.pdf",
+              "size": 371896,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Connectyourcare-1099-SA-2020.jpeg",
+              "size": 1469132,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Fidelity-corrected.pdf",
+              "size": 692030,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "home property tax payment-Oct 2020.pdf",
+              "size": 70983,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "HSA 1099.pdf",
+              "size": 243577,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "India - IT return.docx",
+              "size": 803912,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "IRS-interest paid.pdf",
+              "size": 277127,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Payroll_Organizer.xlsx",
+              "size": 19985,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Please_DocuSign_Casper_Grove_Ashish__Gowri..pdf",
+              "size": 866692,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Primary home mortgage TaxStatement_2021.pdf",
+              "size": 117138,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Primary home property tax 2020.pdf",
+              "size": 125788,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Rental Income and Expense.xlsx",
+              "size": 92527,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Rental-Property-Details.xlsx",
+              "size": 62327,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Tesla DMV registration renewal.pdf",
+              "size": 87185,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "w2-2020.pdf",
+              "size": 25004,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Walnut-MortgageInte-2020.pdf",
+              "size": 121566,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2020",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": []
+        },
+        {
+          "name": "2021",
+          "path": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2021",
+          "updatedAt": "2025-12-22T08:45:40.877Z",
+          "files": [
+            {
+              "name": "2021_FBAR_FATCA_Checklist.xlsx",
+              "size": 105582,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2021",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2021_Rental-Property-Details.xlsx",
+              "size": 113493,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2021",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "FBAR_FATCA_Checklist.xlsx",
+              "size": 105606,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2021",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Rental-Property-Details.xlsx",
+              "size": 113206,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2021",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": []
+        },
+        {
+          "name": "2022",
+          "path": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2022",
+          "updatedAt": "2025-12-22T08:45:40.881Z",
+          "files": [
+            {
+              "name": "2022_FBAR_FATCA_Checklist.xlsx",
+              "size": 105582,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2022",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2022_Rental-Property-Details.xlsx",
+              "size": 113493,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2022",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "FBAR_FATCA_Checklist.xlsx",
+              "size": 105582,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2022",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "Rental-Property-Details.xlsx",
+              "size": 113493,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2022",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": []
+        },
+        {
+          "name": "2023",
+          "path": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2023",
+          "updatedAt": "2025-12-22T08:45:40.884Z",
+          "files": [
+            {
+              "name": "2023_FBAR_FATCA_Checklist.xlsx",
+              "size": 105582,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2023",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2023_Rental-Property-Details.xlsx",
+              "size": 113493,
+              "folder": "6949051a50d1d81d36be5cd0/Client Uploaded Documents/2023",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": []
+        }
+      ]
+    },
+    {
+      "name": "Firm docs shared with client",
+      "path": "6949051a50d1d81d36be5cd0/Firm docs shared with client",
+      "updatedAt": "2025-12-22T08:45:40.890Z",
+      "files": [],
+      "folders": [
+        {
+          "name": "Draft Copies",
+          "path": "6949051a50d1d81d36be5cd0/Firm docs shared with client/Draft Copies",
+          "updatedAt": "2025-12-22T08:45:40.890Z",
+          "files": [],
+          "folders": []
+        },
+        {
+          "name": "eFile Authorization",
+          "path": "6949051a50d1d81d36be5cd0/Firm docs shared with client/eFile Authorization",
+          "updatedAt": "2025-12-22T08:45:40.891Z",
+          "files": [],
+          "folders": []
+        },
+        {
+          "name": "Filed Copies",
+          "path": "6949051a50d1d81d36be5cd0/Firm docs shared with client/Filed Copies",
+          "updatedAt": "2025-12-22T08:45:40.894Z",
+          "files": [
+            {
+              "name": "2019 Filed copy (AHLUWALIA ASHISH).pdf",
+              "size": 523678,
+              "folder": "6949051a50d1d81d36be5cd0/Firm docs shared with client/Filed Copies",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            },
+            {
+              "name": "2020 Filed Copy.(AHLUWALIA ASHISH and GO).pdf",
+              "size": 313180,
+              "folder": "6949051a50d1d81d36be5cd0/Firm docs shared with client/Filed Copies",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": []
+        }
+      ]
+    },
+    {
+      "name": "Private",
+      "path": "6949051a50d1d81d36be5cd0/Private",
+      "updatedAt": "2025-12-22T08:45:40.898Z",
+      "files": [],
+      "folders": [
+        {
+          "name": "2018",
+          "path": "6949051a50d1d81d36be5cd0/Private/2018",
+          "updatedAt": "2025-12-22T08:45:40.898Z",
+          "files": [
+            {
+              "name": "test.txt",
+              "size": 0,
+              "folder": "6949051a50d1d81d36be5cd0/Private/2018",
+              "uploadedBy": "system",
+              "readOnly": false,
+              "readStatus": false,
+              "signStatus": "",
+              "authStatus": ""
+            }
+          ],
+          "folders": []
+        },
+        {
+          "name": "2019",
+          "path": "6949051a50d1d81d36be5cd0/Private/2019",
+          "updatedAt": "2025-12-22T08:45:40.900Z",
+          "files": [],
+          "folders": []
+        },
+        {
+          "name": "2020",
+          "path": "6949051a50d1d81d36be5cd0/Private/2020",
+          "updatedAt": "2025-12-22T08:45:40.901Z",
+          "files": [],
+          "folders": []
+        },
+        {
+          "name": "2021",
+          "path": "6949051a50d1d81d36be5cd0/Private/2021",
+          "updatedAt": "2025-12-22T08:45:40.903Z",
+          "files": [],
+          "folders": []
+        },
+        {
+          "name": "2022",
+          "path": "6949051a50d1d81d36be5cd0/Private/2022",
+          "updatedAt": "2025-12-22T08:45:40.905Z",
+          "files": [],
+          "folders": []
+        },
+        {
+          "name": "2023",
+          "path": "6949051a50d1d81d36be5cd0/Private/2023",
+          "updatedAt": "2025-12-22T08:45:40.907Z",
+          "files": [],
+          "folders": []
+        }
+      ]
+    }
+  ]
+}

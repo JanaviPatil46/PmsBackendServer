@@ -51,6 +51,7 @@ router.patch(
   accountController.updateAccountTags
 );
 router.get("/list", accountController.getAccountsList);
+router.get('/imported-incomplete', accountController.getAccountsWithImportedAndIncompleteTags)
 router.get("/:id", accountController.getAccountById);
 router.patch("/update-active", accountController.updateAccountActiveStatus);
 // Toggle canLogin for a contact
